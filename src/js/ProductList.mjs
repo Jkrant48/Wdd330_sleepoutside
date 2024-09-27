@@ -31,25 +31,10 @@ export default class ProductListing {
     }
 
     renderList(list) {
-        //for each product in the array, create a product cart html structure
-
-            // For each product in the array, generate the product card HTML structure
-            const productListHtml = list.map(product => productCardTemplate(product)).join('');
+        // For each product in the array, generate the product card HTML structure
+        const productListHtml = list.map(product => productCardTemplate(product)).join('');
         
-            // Insert the generated HTML into the DOM
-            this.listElement.insertAdjacentHTML('afterbegin', productListHtml);
-
-        
-
-        // const productListHtml = list.map(productCardTemplate(this.dataSource));
-        // this.listElement.insertAdacentHTML('afterbegin', htmlstrings.join(''));
-        
-        // const productListHtml = list.map(productCardTemplate);
-        // console.log(productListHtml);
-        // document.querySelector('main').innerHTML = productListHtml;
-
-        // const cartItems = getLocalStorage('so-cart');
-        // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-        // document.querySelector('.product-list').innerHTML = htmlItems.join('');
+        // Insert the generated HTML into the DOM
+        this.listElement.insertAdjacentHTML('afterbegin', productListHtml);        
     }
 }
