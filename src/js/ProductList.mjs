@@ -19,16 +19,37 @@ export default class ProductListing {
     //takes product category, the dataSource and the HTML element to render product list to
     constructor (category, dataSource, listElement) {
         this.category = category;
-        this.dataSource = dataSource;  //I declare it here even though I set it in the init()
+        this.dataSource = dataSource;  //I set it up here even though I set it in the init()
         this.listElement = listElement;
     }
 
     async init() {
         this.dataSource = await this.dataSource.getData();
-        // console.log(dataSource);
+        //calling getData() here works as long as a ProductData object is passed 
+        console.log(this.dataSource);
+        this.renderList(this.dataSource);
     }
 
-    renderList() {
+    renderList(list) {
+        //for each product in the array, create a product cart html structure
+
+            // For each product in the array, generate the product card HTML structure
+            const productListHtml = list.map(product => productCardTemplate(product)).join('');
         
+            // Insert the generated HTML into the DOM
+            this.listElement.insertAdjacentHTML('afterbegin', productListHtml);
+
+        
+
+        // const productListHtml = list.map(productCardTemplate(this.dataSource));
+        // this.listElement.insertAdacentHTML('afterbegin', htmlstrings.join(''));
+        
+        // const productListHtml = list.map(productCardTemplate);
+        // console.log(productListHtml);
+        // document.querySelector('main').innerHTML = productListHtml;
+
+        // const cartItems = getLocalStorage('so-cart');
+        // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+        // document.querySelector('.product-list').innerHTML = htmlItems.join('');
     }
 }

@@ -6,7 +6,7 @@ const dataSource = new ProductData('tents');
 const dataList = new ProductListing(
   'tents',
   dataSource,
-  document.querySelector('main'),
+  document.querySelector('.products h2'),
 );
 dataList.init();
 
