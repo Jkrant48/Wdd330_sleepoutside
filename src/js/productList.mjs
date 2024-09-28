@@ -33,7 +33,7 @@ export default class ProductListing {
 function productCardTemplate(product) {
     return `
         <li class="product-card">
-            <a href="product_pages/index.html?product=${product.id}">
+            <a href="product_pages/index.html?product=${product.Id}">
                 <img src="${product.image}" alt="Image of ${product.name || 'Product Image'}">
                 <h3 class="card__brand">${product.brand || 'Brand not available'}</h3>
                 <h2 class="card__name">${product.name}</h2>
