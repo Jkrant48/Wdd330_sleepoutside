@@ -27,13 +27,22 @@ export default class ProductListing {
     async init() {
         this.dataSource = await this.dataSource.getData();
         //calling getData() here works as long as a ProductData object is passed 
-        console.log('init() productListing object')
+        // console.log('init() productListing object')
         console.log(this.dataSource);
-        this.renderList(this.dataSource);
-        console.log('ProductListing: this.ListElement');
-        console.log(this.listElement);       
+        let filteredList = this.filterList(this.dataSource);
+        this.renderList(filteredList);
+        // console.log('ProductListing: this.ListElement');
+        // console.log(this.listElement);       
         
     }
+
+    filterList(list) {
+        let filteredList = list.filter(
+          (product) => product.Id !== "989CG" && product.Id !== "880RT"
+        );
+        
+        return filteredList;
+      }
 
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.listElement, list);
