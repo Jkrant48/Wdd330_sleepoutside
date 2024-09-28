@@ -41,7 +41,6 @@ export default class ProductDetails {
   }
 
   renderProductDetails(selector) {
-    console.log(this.product);
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
       "afterBegin",
