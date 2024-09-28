@@ -202,6 +202,15 @@ button {
   grid-column: 3;
 }
 
+discount-amount {
+  color: red;
+  font-weight: bold;
+}
+
+.product-card__price s {
+  color: grey;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
