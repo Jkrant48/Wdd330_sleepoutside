@@ -35,8 +35,11 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   clear = false ) {
   const htmlStrings = list.map(templateFn);
   // if clear is true we need to clear out the contents of the parent.
+  console.log('htmlStrings');
   console.log(htmlStrings);
+  console.log('position');
   console.log(position);
+  console.log('parentElement');
   console.log(parentElement);
   if (clear) {
     parentElement.innerHTML = "";

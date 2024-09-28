@@ -2,7 +2,7 @@ import {renderListWithTemplate} from './utils.mjs';
 
 function productCardTemplate(product) {
     return `<li class="product-card">
-            <a href="product_pages/index.html?product=${product.id}">
+            <a href="product_pages/index.html?product=${product.Id}">
                 <img
                 src=${product.Image}
                 alt=${product.Name}
@@ -21,6 +21,7 @@ export default class ProductListing {
         this.category = category;
         this.dataSource = dataSource;  //I set it up here even though I set it in the init()
         this.listElement = listElement;
+        
     }
 
     async init() {
@@ -29,6 +30,8 @@ export default class ProductListing {
         console.log('init() productListing object')
         console.log(this.dataSource);
         this.renderList(this.dataSource);
+        console.log('ProductListing: this.ListElement');
+        console.log(this.listElement);       
         
     }
 

@@ -3,6 +3,8 @@ import ProductListing from './ProductList.mjs';
 
 const dataSource = new ProductData('tents');
 const element = document.querySelector('.product-list');
+// console.log('document.querySelector(.product-list)');
+// console.log(document.querySelector('.product-list'));
 //category, dataSource, listElement
 const dataList = new ProductListing('tents', dataSource, element);
 
