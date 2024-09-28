@@ -1,6 +1,7 @@
+import {renderListWithTemplate} from './utils.mjs';
+
 function productCardTemplate(product) {
-    return `<ul class="product-list">
-            <li class="product-card">
+    return `<li class="product-card">
             <a href="product_pages/index.html?product=${product.id}">
                 <img
                 src=${product.Image}
@@ -10,8 +11,7 @@ function productCardTemplate(product) {
                 <h2 class="card__name">${product.NameWithoutBrand}</h2>
                 <p class="product-card__price">$${product.ListPrice}</p></a
             >
-            </li>
-        </ul>`
+            </li>`        
 }
 
 //generate a list of product cards in HTML from an array
@@ -26,15 +26,20 @@ export default class ProductListing {
     async init() {
         this.dataSource = await this.dataSource.getData();
         //calling getData() here works as long as a ProductData object is passed 
+        console.log('init() productListing object')
         console.log(this.dataSource);
         this.renderList(this.dataSource);
+        
     }
 
     renderList(list) {
-        // For each product in the array, generate the product card HTML structure
-        const productListHtml = list.map(product => productCardTemplate(product)).join('');
-        
-        // Insert the generated HTML into the DOM
-        this.listElement.insertAdjacentHTML('afterbegin', productListHtml);        
+        renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
+    // renderList(list) {
+    //     // For each product in the array, generate the product card HTML structure
+    //     const productListHtml = list.map(product => productCardTemplate(product)).join('');
+        
+    //     // Insert the generated HTML into the DOM
+    //     this.listElement.insertAdjacentHTML('afterbegin', productListHtml);        
+    // }
 }

@@ -29,3 +29,18 @@ export function setClick(selector, callback) {
   return product;
  }
  
+ // function to take a list of objects and a template and insert the objects as HTML into the DOM
+ // set positition and clear params to default value, but can be changed
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin",
+  clear = false ) {
+  const htmlStrings = list.map(templateFn);
+  // if clear is true we need to clear out the contents of the parent.
+  console.log(htmlStrings);
+  console.log(position);
+  console.log(parentElement);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));  
+}
