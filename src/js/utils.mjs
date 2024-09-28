@@ -45,3 +45,10 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   // Insert the HTML string into the parent element at the specified position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
+
+// Utility to get query parameters from URL
+export function getParams(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
+}
