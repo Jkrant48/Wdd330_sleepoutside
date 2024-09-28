@@ -26,14 +26,19 @@ export default class ProductListing{
     async init(){
         const list = await this.dataSource.getData();
 
-        this.renderList(list);
+        this.renderList(this.filterList(list));
     }
 
     renderList(list){
         renderListWithTemplate(productCardTemplate , this.listElement , list)
         //const htmlStrings = list.map(productCartTemplate)
         //this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
-        }
-        
-    
-}
+        }   
+
+    filterList(list)
+    {
+
+      const tends = list.filter((tend) =>  tend == list[0])
+      return tends}
+      }    
+

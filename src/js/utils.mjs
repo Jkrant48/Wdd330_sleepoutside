@@ -40,6 +40,7 @@ export function renderListWithTemplate (templateFn, parentElement, list, positio
      }
     parentElement.insertAdjacentHTML(position , htmlStrings.join(''))
     
+    
       
       
       }
