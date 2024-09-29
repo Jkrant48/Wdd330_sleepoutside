@@ -9,8 +9,6 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   cartProductListDOM.innerHTML = htmlItems.join('');
   displayTotal(cartItems);
-
-  
 }
 
 function cartItemTemplate(item) {
@@ -33,30 +31,30 @@ function cartItemTemplate(item) {
 }
 
 function isCartEmpty(cart) {
-
   if (cart === null) {
-    console.log('cart is null, true');
     return true;
   } else {
-    console.log('cart is null, false')
     return false;
   }
 }
 
 function displayTotal(cart) {
   if (isCartEmpty(cart)) {
-    console.log('displayTotal=false');
     cartFooterDOM.classList.add('.hide');
-  } else { 
-    console.log('displayTotal == true');
-    cartFooterDOM.classList.remove('.hide')
-  }  
+  } else {
+    cartFooterDOM.classList.remove('.hide');
+  }
+
   calcTotal(cart);
 }
 
 function calcTotal(cart) {
   let tempTotal = 0;
-  // cart.map()
+  // let itemsTotal = 0;
+  cart.map((item) => {
+    //itemsTotal += quantity; - or something like this,
+    tempTotal += item.FinalPrice; //* quantity when we get quantity variable added
+  });
 
   cartTotalDOM.innerHTML = `Total: $ ${tempTotal}`;
 }
