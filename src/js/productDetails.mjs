@@ -1,11 +1,11 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { setLocalStorage, getLocalStorage} from './utils.mjs';
 
 function productDetailstemplate(product) {
     return `<section class="product-detail">
         <h3>${product.Brand.Name}</h3>
 
         <h2 class="divider">${product.NameWithoutBrand}</h2>
-        <img
+          <img
           class="divider"
           src= ${product.Image}
           alt=${product.Name}
@@ -28,7 +28,7 @@ export default class ProductDetails {
     this.productId = productId;
     this.dataSource = dataSource;
     this.product = {};
-  }
+    }
 
     async init(){
         this.product = await this.dataSource.findProductById(this.productId);
