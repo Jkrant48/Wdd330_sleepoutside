@@ -55,5 +55,4 @@ export default class ProductDetails{
             'afterBegin', productDetailstemplate(this.product)
         );
     }
-
 }
