@@ -1,21 +1,38 @@
 import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
-  return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
-      <h2 class="divider">${product.NameWithoutBrand}</h2>
-      <img
-        class="divider"
-          src= ${product.Image}
-          alt=${product.Name}
-      />
-      <p class="product-card__price">$${product.FinalPrice}</p>
-      <p class="product__color">${product.Colors[0].ColorName}</p>
+  let originalPrice = product.FinalPrice; // Assuming FinalPrice is the discounted price
+  let discountedPrice = originalPrice;
+  let discountDisplay = '';
+
+  // Check if the product has a discount
+  if (product.Discount && product.Discount > 0) {
+    // Calculate the original price before discount
+    discountedPrice = originalPrice - (originalPrice * product.Discount / 100);
+    discountDisplay = `<p class="product-card__discount">
+      Discount: <span class="discount-amount">${product.Discount}% off!</span>
+    </p>`;
+  }
+
+    return `<section class="product-detail">
+        <h3>${product.Brand.Name}</h3>
+        <h2 class="divider">${product.NameWithoutBrand}</h2>
+        <img
+          class="divider"
+        src="${product.Image}"
+        alt="${product.NameWithoutBrand}"
+        />
+      ${discountDisplay}
+      <p class="product-card__price">Original Price: <s>$${originalPrice.toFixed(2)}</s></p>
+      <p class="product-card__price">Discounted Price: $${discountedPrice.toFixed(2)}</p>
+        <p class="product__color">${product.Colors[0].ColorName}</p>
       <p class="product__description">
-      ${product.DescriptionHtmlSimple}
+        ${product.DescriptionHtmlSimple}
       </p>
-      <div class="product-detail__add">
+        <div class="product-detail__add">
         <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-      </div></section>`;
+        </div>
+    </section>`;
 }
 
 export default class ProductDetails {
