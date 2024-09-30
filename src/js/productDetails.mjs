@@ -1,21 +1,26 @@
 import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
-function productDetailsTemplate(product) {
-  return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
-      <h2 class="divider">${product.NameWithoutBrand}</h2>
-      <img
-        class="divider"
-        src="${product.Image}"
-        alt="${product.NameWithoutBrand}"
-      />
-      <p class="product-card__price">$${product.FinalPrice}</p>
-      <p class="product__color">${product.Colors[0].ColorName}</p>
-      <p class="product__description">
-      ${product.DescriptionHtmlSimple}
-      </p>
-      <div class="product-detail__add">
-        <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-      </div></section>`;
+function productDetailstemplate(product) {
+    return `<section class="product-detail">
+        <h3>${product.Brand.Name}</h3>
+
+        <h2 class="divider">${product.NameWithoutBrand}</h2>
+        <img
+          class="divider"
+          src= ${product.Image}
+          alt=${product.Name}
+        />
+
+        <p class="product-card__price">${product.ListPrice}</p>
+
+        <p class="product__color">${product.Colors[0].ColorName}</p>
+
+        <p class="product__description">${product.DescriptionHtmlSimple}</p>
+
+        <div class="product-detail__add">
+          <button id="addToCart" data-id=${product.Id}>Add to Cart</button>
+        </div>
+        </section>`
 }
 
 export default class ProductDetails {
@@ -25,32 +30,26 @@ export default class ProductDetails {
     this.product = {};
   }
 
-  async init() {
-    // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-    this.product = await this.dataSource.findProductById(this.productId);
-    //render product details out into html
-    this.renderProductDetails('main');
-    //add event handlers
-    document
-      .getElementById('addToCart')
-      .addEventListener('click', this.addToCart()); //I removed the bind
-  }
+    async init(){
+        this.product = await this.dataSource.findProductById(this.productId);
+        
+        this.renderProductDetails('main');
 
-  addToCart() {
-    let cart = getLocalStorage('so-cart') || [];
-    if (!Array.isArray(cart)) {
-      cart = [];
+        document
+       .getElementById('addToCart')
+       .addEventListener('click', this.addToCart.bind(this));
+
     }
-    console.log(cart);
-    cart.push(this.product);
-    setLocalStorage('so-cart', cart);
-  }
 
-  renderProductDetails(selector) {
-    const element = document.querySelector(selector);
-    element.insertAdjacentHTML(
-      'afterBegin',
-      productDetailsTemplate(this.product),
-    );
-  }
+    addToCart() {
+        setLocalStorage('so-cart', this.product);
+    }
+
+
+    renderProductDetails(selector){
+        const element = document.querySelector(selector);
+        element.insertAdjacentHTML(
+            'Afterbegin', productDetailstemplate(this.product)
+        );
+    }
 }
