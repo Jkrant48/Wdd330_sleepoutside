@@ -2,14 +2,13 @@ import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   let originalPrice = product.FinalPrice; // Assuming FinalPrice is the discounted price
-  let discountedPrice = originalPrice; // Initialize discounted price
-  let discountDisplay = ''; // Initialize discount display message
+  let discountedPrice = originalPrice;
+  let discountDisplay = '';
 
-  // Check if the product has a discount and apply the logic
+  // Check if the product has a discount
   if (product.Discount && product.Discount > 0) {
     // Calculate the original price before discount
-    originalPrice = product.FinalPrice / (1 - product.Discount / 100); 
-    discountedPrice = product.FinalPrice; // FinalPrice is already discounted
+    discountedPrice = originalPrice - (originalPrice * product.Discount / 100);
     discountDisplay = `<p class="product-card__discount">
       Discount: <span class="discount-amount">${product.Discount}% off!</span>
     </p>`;
