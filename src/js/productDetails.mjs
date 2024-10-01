@@ -5,17 +5,16 @@ function productDetailsTemplate(product) {
   let discountedPrice = originalPrice; // Initialize discounted price
   let discountDisplay = ''; // Initialize discount display message
 
-  // Check if the product has a discount and apply the logic
+  // Check if the product has a discount
   if (product.Discount && product.Discount > 0) {
     // Calculate the original price before discount
-    originalPrice = product.FinalPrice / (1 - product.Discount / 100); 
-    discountedPrice = product.FinalPrice; // FinalPrice is already discounted
+    discountedPrice = originalPrice - (originalPrice * product.Discount / 100);
     discountDisplay = `<p class="product-card__discount">
       Discount: <span class="discount-amount">${product.Discount}% off!</span>
     </p>`;
   }
 
-  return `<section class="product-detail">
+    return `<section class="product-detail">
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.NameWithoutBrand}</h2>
         <img
