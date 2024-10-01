@@ -1,4 +1,3 @@
-
 import { getParams } from './utils.mjs';
 import ProductDetails from './productDetails.mjs';
 import ProductData from './ProductData.mjs';
