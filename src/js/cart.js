@@ -1,4 +1,4 @@
-import { getLocalStorage } from './utils.mjs';
+import ShoppingCart from './shoppingCart.mjs';
 
 const cartFooterDOM = document.querySelector('.cart-footer');
 const cartTotalDOM = document.querySelector('.cart-total');
@@ -64,3 +64,4 @@ function displayTotal(cart) {
 }
 
 renderCartContents();
+

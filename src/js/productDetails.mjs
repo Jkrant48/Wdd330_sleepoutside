@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -29,27 +29,27 @@ export default class ProductDetails {
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
     this.product = await this.dataSource.findProductById(this.productId);
     //render product details out into html
-    this.renderProductDetails("main");
+    this.renderProductDetails('main');
     //add event handlers
     document
-      .getElementById("addToCart")
-      .addEventListener("click", this.addToCart()); //I removed the bind
+      .getElementById('addToCart')
+      .addEventListener('click', this.addToCart()); //I removed the bind
   }
 
   addToCart() {
-    let cart = getLocalStorage("so-cart") || [];
+    let cart = getLocalStorage('so-cart') || [];
     if (!Array.isArray(cart)) {
       cart = [];
     }
     console.log(cart);
     cart.push(this.product);
-    setLocalStorage("so-cart", cart);
+    setLocalStorage('so-cart', cart);
   }
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
-      "afterBegin",
+      'afterBegin',
       productDetailsTemplate(this.product),
     );
   }
