@@ -4,11 +4,14 @@ const cartFooterDOM = document.querySelector('.cart-footer');
 const cartTotalDOM = document.querySelector('.cart-total');
 const cartProductListDOM = document.querySelector('.product-list');
 
+
+
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart') || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   cartProductListDOM.innerHTML = htmlItems.join('');
   displayTotal(cartItems);
+  
 }
 
 function cartItemTemplate(item) {
@@ -30,22 +33,13 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-function isCartEmpty(cart) {
-  if (cart === null) {
+//Kerri feature code week 2: isCartEmpty, displayTotal and calTotal
+function isCartEmpty(cart) { 
+  if (cart.length === 0) {
     return true;
-  } else {
+  } else {    
     return false;
   }
-}
-
-function displayTotal(cart) {
-  if (isCartEmpty(cart)) {
-    cartFooterDOM.classList.add('.hide');
-  } else {
-    cartFooterDOM.classList.remove('.hide');
-  }
-
-  calcTotal(cart);
 }
 
 function calcTotal(cart) {
@@ -57,6 +51,16 @@ function calcTotal(cart) {
   });
 
   cartTotalDOM.innerHTML = `Total: $ ${tempTotal}`;
+}
+
+function displayTotal(cart) {
+  
+  if (isCartEmpty(cart)) {
+    cartFooterDOM.classList.add('hide');
+  } else {
+    cartFooterDOM.classList.remove('hide');
+  }  
+  calcTotal(cart);
 }
 
 renderCartContents();

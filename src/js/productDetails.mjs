@@ -40,8 +40,7 @@ export default class ProductDetails {
     let cart = getLocalStorage("so-cart") || [];
     if (!Array.isArray(cart)) {
       cart = [];
-    }
-    console.log(cart);
+    }    
     cart.push(this.product);
     setLocalStorage("so-cart", cart);
   }
