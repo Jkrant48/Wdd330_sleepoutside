@@ -1,21 +1,22 @@
-import ShoppingCart from './shoppingCart.mjs';
+// import ShoppingCart from './shoppingCart.mjs';
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 const cartFooterDOM = document.querySelector('.cart-footer');
 const cartTotalDOM = document.querySelector('.cart-total');
 const cartProductListDOM = document.querySelector('.product-list');
 
-
-
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart') || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   cartProductListDOM.innerHTML = htmlItems.join('');
+
+  removeFromCart('so-cart');
   displayTotal(cartItems);
-  
 }
 
 function cartItemTemplate(item) {
   const newItem = `<li class='cart-card divider'>
+  <span id='remove-btn' data-id=${item.Id}>❌</span>
   <a href='#' class='cart-card__image'>
     <img
       src='${item.Image}'
@@ -34,10 +35,10 @@ function cartItemTemplate(item) {
 }
 
 //Kerri feature code week 2: isCartEmpty, displayTotal and calTotal
-function isCartEmpty(cart) { 
+function isCartEmpty(cart) {
   if (cart.length === 0) {
     return true;
-  } else {    
+  } else {
     return false;
   }
 }
@@ -54,14 +55,32 @@ function calcTotal(cart) {
 }
 
 function displayTotal(cart) {
-  
   if (isCartEmpty(cart)) {
     cartFooterDOM.classList.add('hide');
   } else {
     cartFooterDOM.classList.remove('hide');
-  }  
+  }
   calcTotal(cart);
 }
 
-renderCartContents();
+//Jonathan's changes
+function removeFromCart(key) {
+  document.querySelectorAll('#remove-btn').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      if (event.target.id === 'remove-btn') {
+        const productId = event.target.dataset.id;
+        removeItem(key, productId);
+      }
+    });
+  });
+}
 
+//key is the contents of the cart at this point -kjm
+function removeItem(key, productId) {
+  const cartItems = getLocalStorage(key);
+  const updateCart = cartItems.filter((item) => item.Id !== productId);
+  setLocalStorage('so-cart', updateCart);
+  window.location.reload();
+}
+
+renderCartContents();
