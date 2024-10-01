@@ -2,8 +2,8 @@ import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   let originalPrice = product.FinalPrice; // Assuming FinalPrice is the discounted price
-  let discountedPrice = originalPrice;
-  let discountDisplay = '';
+  let discountedPrice = originalPrice; // Initialize discounted price
+  let discountDisplay = ''; // Initialize discount display message
 
   // Check if the product has a discount
   if (product.Discount && product.Discount > 0) {
@@ -14,7 +14,7 @@ function productDetailsTemplate(product) {
     </p>`;
   }
 
-  return `<section class="product-detail">
+    return `<section class="product-detail">
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.NameWithoutBrand}</h2>
         <img
