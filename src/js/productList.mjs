@@ -37,18 +37,21 @@ export default class ProductListing {
 
   renderList(list) {
     console.log('HtmlElement:', this.HtmlElement);
-
     renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
+    renderListWithTemplate(discounted,this.HtmlElement,list);
   }
- 
-discounted (product){ 
-   const retail = product.SuggestedRetailPrice;
-   const price = product.FinalPrice;
-  if (price > retail){ 
-    const sing = document.createElement('p');
-    sing.textContent = `Discount`;
-    document.querySelector('.discount').appendChild(sing)   
-}
-}
-}
+ }
+ function discounted(product){ 
+
+  const retail = `${product.SuggestedRetailPrice}`;
+  const price = `${product.FinalPrice}`;
+
+   if (price > retail){ // The price must be less than retail
+   const sing = document.createElement('p');
+   const discount = retail - price
+   sing.textContent = `Discount ${discount}`
+   document.querySelector('.discount').appendChild(sing)    
+   
+   }
+} 
 
