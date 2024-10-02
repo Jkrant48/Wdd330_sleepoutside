@@ -9,10 +9,10 @@ function renderCartContents() {
   // const cartItems = getLocalStorage('so-cart') ;
   console.log(cartItems);
   cartItems = Array.isArray(cartItems) ? cartItems : [cartItems];
-  console.log(cartItems);
+  // console.log(cartItems);
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   cartProductListDOM.innerHTML = htmlItems.join('');
-  displayTotal();
+  // displayTotal();
 }
 
 function cartItemTemplate(item) {
@@ -34,30 +34,30 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-function isCartEmpty() {
-  const isEmpty = getLocalStorage('so-cart');
-  if (isEmpty === null) {
-    console.log('isEmpty=true');
-    return true;
-  } else {
-    console.log('isEmpty=false');
-    return false;
-  }
-}
+// function isCartEmpty() {
+//   const isEmpty = getLocalStorage('so-cart');
+//   if (isEmpty === null) {
+//     console.log('isEmpty=true');
+//     return true;
+//   } else {
+//     console.log('isEmpty=false');
+//     return false;
+//   }
+// }
 
-function displayTotal() {
-  if (isCartEmpty) {
-    console.log('displayTotal=false');
-    cartFooterDOM.classList.add('.hide');
-  } else { 
-    console.log('displayTotal == true');
-    cartFooterDOM.classList.remove('.hide')
-  }  
-}
+// function displayTotal() {
+//   if (isCartEmpty) {
+//     console.log('displayTotal=false');
+//     cartFooterDOM.classList.add('.hide');
+//   } else { 
+//     console.log('displayTotal == true');
+//     cartFooterDOM.classList.remove('.hide')
+//   }  
+// }
 
-function calcTotal(cart) {
-  let tempTotal = 0;
-  cart.map()
-}
+// function calcTotal(cart) {
+//   let tempTotal = 0;
+//   cart.map()
+// }
 
 renderCartContents();
