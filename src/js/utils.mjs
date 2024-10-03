@@ -38,6 +38,40 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
 
+//function to render with a template
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback  
+) {
+    parentElement.insertAdjacentHTML("afterbegin", template);
+    if(callback) {
+      callback(data);
+    }
+    
+}
+
+
+export async function loadTemplate(path) {
+  const html = await fetch(path);
+  const template = await html.text();
+  return template;
+}
+
+export async function loadHeaderFooter() {
+  //load the header and footer
+  const headerTemplate = await loadTemplate('../partials/header.html');
+  const footerTemplate = await loadTemplate('../partials/footer.html');
+
+  //get the DOM elements
+  const headerDOM = document.querySelector('#main-header');
+  const footerDOM = document.querySelector('#main-footer');
+  //render the header and footer
+  renderWithTemplate(headerTemplate, headerDOM);
+  renderWithTemplate(footerTemplate, footerDOM);
+}
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener('touchend', (event) => {
