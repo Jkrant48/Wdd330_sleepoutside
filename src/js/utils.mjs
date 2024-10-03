@@ -45,7 +45,7 @@ export function renderWithTemplate(
   data,
   callback  
 ) {
-    parentElement.insertAdjacentHTML("afterbegin", template);
+    parentElement.insertAdjacentHTML('afterbegin', template);
     if(callback) {
       callback(data);
     }
