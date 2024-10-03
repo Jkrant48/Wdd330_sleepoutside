@@ -7,4 +7,3 @@ const element = document.querySelector('.product-list');
 const listProducts = new ProductListing(productData, 'Tents', element);
 loadHeaderFooter();
 listProducts.init();
-

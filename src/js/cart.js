@@ -1,12 +1,13 @@
 // import ShoppingCart from './shoppingCart.mjs';
-import { getLocalStorage, setLocalStorage, loadHeaderFooter } from './utils.mjs';
-
+import {
+  getLocalStorage,
+  setLocalStorage,
+  loadHeaderFooter,
+} from './utils.mjs';
 
 const cartFooterDOM = document.querySelector('.cart-footer');
 const cartTotalDOM = document.querySelector('.cart-total');
 const cartProductListDOM = document.querySelector('.product-list');
-
-
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart') || [];
