@@ -24,10 +24,10 @@ export default class ProductListing {
 
   async init() {
     //get data
-    const list = await this.dataSource.getData(this.productCategory);
-    console.log(list);
+    //const list = await this.dataSource.getData(this.productCategory);
+    const list = await this.dataSource.getData(this.category);
+   // console.log(list);
     this.renderList(this.filterPoductList(list));  
-    this.discounted()
   }
 
   filterPoductList(list) {
@@ -36,7 +36,7 @@ export default class ProductListing {
   }
 
   renderList(list) {
-    console.log('HtmlElement:', this.HtmlElement);
+   // console.log('HtmlElement:', this.HtmlElement);
     renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
     renderListWithTemplate(discounted,this.HtmlElement,list);
   }
