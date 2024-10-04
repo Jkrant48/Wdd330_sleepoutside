@@ -26,8 +26,8 @@ export default class ProductListing {
     //get data
     //const list = await this.dataSource.getData(this.productCategory);
     const list = await this.dataSource.getData(this.category);
-   // console.log(list);
-    this.renderList(this.filterPoductList(list));  
+     // console.log(list);
+    this.renderList(this.filterPoductList(list));   
   }
 
   filterPoductList(list) {
