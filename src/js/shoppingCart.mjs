@@ -21,17 +21,20 @@ function cartItemTemplate(item) {
 }
 
 export default class ShoppingCart {
-  constructor(key, productList) {
+  constructor(key, productList, cartFooterDOM) {
     this.key = key;
     this.productList = productList;
+    this.cartFooterDOM = cartFooterDOM;
   }
 
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
     if (cartItems === undefined || cartItems === null) cartItems = [];
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    console.log(htmlItems);
     document.querySelector(this.productList).innerHTML = htmlItems.join('');
     removeFromCart(this.key);
+    displayTotal(cartItems, this.cartFooterDOM);
   }
 }
 
@@ -51,4 +54,35 @@ function removeItem(key, productId) {
   const updateCart = cartItems.filter((item) => item.Id !== productId);
   setLocalStorage(key, updateCart);
   window.location.reload();
+}
+
+//Kerri's feature
+function isCartEmpty(cart) {
+  if (cart.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function calcTotal(cart, cartTotalDOM) {
+  let tempTotal = 0;
+  // let itemsTotal = 0;
+  cart.map((item) => {
+    //itemsTotal += quantity; - or something like this,
+    tempTotal += item.FinalPrice; //* quantity when we get quantity variable added
+  });
+
+  cartTotalDOM.innerHTML = `Total: $ ${tempTotal}`;
+}
+
+function displayTotal(cart, cartFooterDOM) {
+  const cartFootDOM = document.querySelector(cartFooterDOM);
+  const totalDOM = document.querySelector('.cart-total');
+  if (isCartEmpty(cart)) {
+    cartFootDOM.classList.add('hide');
+  } else {
+    cartFootDOM.classList.remove('hide');
+  }
+  calcTotal(cart, totalDOM);
 }
