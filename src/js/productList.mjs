@@ -2,7 +2,7 @@ import { renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
   return `<li class="product-card">
-            <a href="product_pages/index.html?product=${product.Id}">
+            <a href="../product_pages/index.html?product=${product.Id}">
               <img
                 src= "${product.Images.PrimaryMedium}"
                 alt="Image of ${product.Name}"
@@ -47,9 +47,11 @@ export default class ProductListing {
     console.log('w/in renderList(): discounted temp func');
     console.log(discounted());
   }
+
  }
  function discounted(product){ 
-
+  console.log('discounted(discount)');
+  console.log(discount);
   const retail = `${product.SuggestedRetailPrice}`;
   const price = `${product.FinalPrice}`;
 

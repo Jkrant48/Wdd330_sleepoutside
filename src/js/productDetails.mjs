@@ -1,6 +1,8 @@
 import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
+  console.log('productDetailsTemplate(product)');
+    console.log(product);
   let originalPrice = product.FinalPrice; // Assuming FinalPrice is the discounted price
   let discountedPrice = originalPrice; // Initialize discounted price
   let discountDisplay = ''; // Initialize discount display message
@@ -38,13 +40,22 @@ function productDetailsTemplate(product) {
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
+    console.log('constructor: productId');
+    console.log(productId);
     this.dataSource = dataSource;
+    console.log('constructor: dataSource');
+    console.log(dataSource);
     this.product = {};
+    console.log('this.product');
+    console.log(this.product);
   }
 
   async init() {
     // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
+    // this.product = await this.dataSource.findProductById(this.productId);
     this.product = await this.dataSource.findProductById(this.productId);
+    console.log('init: ');
+    console.log(this.product);
     //render product details out into html
     this.renderProductDetails('main');
     //add event handlers
@@ -65,6 +76,9 @@ export default class ProductDetails {
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
+    console.log('renderProductDetains: ');
+    console.log(selector);
+    console.log(this.product);
     element.insertAdjacentHTML(
       'afterBegin',
       productDetailsTemplate(this.product),
