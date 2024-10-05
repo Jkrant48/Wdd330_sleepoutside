@@ -16,42 +16,53 @@ function productCardTemplate(product) {
 }
 
 export default class ProductListing {
-  constructor(dataSource, productCategory, HtmlElement) {
+  constructor(category, dataSource, listElement, HtmlElement, productCategory) {
+    // We passed in this information to make our class as reusable as possible.
+    // Being able to define these things when we use the class will make it very flexible
+    this.category = category;
     this.dataSource = dataSource;
-    this.productCategory = productCategory;
+    this.listElement = listElement;
     this.HtmlElement = HtmlElement;
+    this.productCategory = productCategory;
   }
-
   async init() {
-    //get data
-    const list = await this.dataSource.getData(this.productCategory);
-    console.log(list);
-    this.renderList(this.filterPoductList(list));  
-    this.discounted()
-  }
+    // our dataSource will return a Promise...so we can use await to resolve it.
+    const list = await this.dataSource.getData(this.category);
+    // render the list
+    this.renderList(list);
+    //set the title to the current category
+    document.querySelector('.title').innerHTML = this.category;
 
-  filterPoductList(list) {
-    const desiredIds = ['880RR', '985RF', '985PR', '344YJ'];
-    return list.filter((product) => desiredIds.includes(product.Id));
+     //get data
+    //const list = await this.dataSource.getData(this.productCategory);
+     // console.log(list);
+   // this.renderList(this.filterPoductList(list));  
   }
+  //
+   filterPoductList(list) {
+     const desiredIds = ['880RR', '985RF', '985PR', '344YJ'];
+     return list.filter((product) => desiredIds.includes(product.Id));
+   }
 
+  // render after doing the first stretch
   renderList(list) {
-    console.log('HtmlElement:', this.HtmlElement);
+     // console.log('HtmlElement:', this.HtmlElement);
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
     renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
     renderListWithTemplate(discounted,this.HtmlElement,list);
-  }
- }
- function discounted(product){ 
 
-  const retail = `${product.SuggestedRetailPrice}`;
-  const price = `${product.FinalPrice}`;
 
-   if (price > retail){ // The price must be less than retail
-   const sing = document.createElement('p');
-   const discount = retail - price
-   sing.textContent = `Discount ${discount}`
-   document.querySelector('.discount').appendChild(sing)    
-   
-   }
-} 
-
+  }}
+    function discounted(product){ 
+      
+        const retail = `${product.SuggestedRetailPrice}`;
+        const price = `${product.FinalPrice}`;
+      
+         if (price > retail){ // The price must be less than retail
+         const sing = document.createElement('p');
+         const discount = retail - price
+         sing.textContent = `Discount ${discount}`
+         document.querySelector('.discount').appendChild(sing)    
+         
+         
+  }}
