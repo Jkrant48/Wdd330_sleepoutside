@@ -11,7 +11,7 @@ const dataSource2 = new ProductData();
 console.log('after call: new ProductData(): dataSource2');
 console.log(dataSource2);
 
-const productId = getParams("product");
+const productId = getParams('product');
 console.log('getParams: productId');
 console.log(productId);
 

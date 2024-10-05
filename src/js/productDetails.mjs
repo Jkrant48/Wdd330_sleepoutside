@@ -76,7 +76,7 @@ export default class ProductDetails {
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
-    console.log('renderProductDetains: ');
+    console.log('renderProductDetails: ');
     console.log(selector);
     console.log(this.product);
     element.insertAdjacentHTML(

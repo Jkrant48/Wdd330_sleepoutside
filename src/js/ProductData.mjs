@@ -33,7 +33,7 @@ export default class ProductData {
 
   async findProductById(id) {
     try {
-      const url = `${baseURL}/product/${id}`;
+      const url = `${baseURL}product/${id}`;
       console.log('Fetching product data from URL:', url); // Log the full URL
       const response = await fetch(url);
       const data = await convertToJson(response);
