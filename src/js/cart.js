@@ -5,6 +5,8 @@ import {
   loadHeaderFooter,
 } from './utils.mjs';
 
+//runs on cart/index.html
+
 const cartFooterDOM = document.querySelector('.cart-footer');
 const cartTotalDOM = document.querySelector('.cart-total');
 const cartProductListDOM = document.querySelector('.product-list');

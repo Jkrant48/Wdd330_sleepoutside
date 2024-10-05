@@ -9,13 +9,13 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
-  constructor(category) {}
-  // // (category) {
+  constructor() {}
+  // constructor (category) {
   //   // this.category = category;
   //   // this.path = `/json/${this.category}.json`;
   // }
-  async getData(category = "tents") {    //set default value for category if nothing is passed
-    const response = await fetch(baseURL + 'products/search/${category}'); //added forward slash to line before products
+  async getData(category) {    //set default value for category if nothing is passed
+    const response = await fetch(baseURL + `products/search/${category}`); //added forward slash to line before products
     console.log('getData: response');
     console.log(response);
     const data = await convertToJson(response);
