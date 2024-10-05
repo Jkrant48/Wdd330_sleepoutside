@@ -31,7 +31,7 @@ export default class ShoppingCart {
     const cartItems = getLocalStorage(this.key);
     if (cartItems === undefined || cartItems === null) cartItems = [];
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    console.log(htmlItems);
+    // console.log(htmlItems);
     document.querySelector(this.productList).innerHTML = htmlItems.join('');
     removeFromCart(this.key);
     displayTotal(cartItems, this.cartFooterDOM);
@@ -73,7 +73,7 @@ function calcTotal(cart, cartTotalDOM) {
     tempTotal += item.FinalPrice; //* quantity when we get quantity variable added
   });
 
-  cartTotalDOM.innerHTML = `Total: $ ${tempTotal}`;
+  cartTotalDOM.innerHTML = `Total: $ ${tempTotal.toFixed(2)}`;
 }
 
 function displayTotal(cart, cartFooterDOM) {
