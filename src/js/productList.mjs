@@ -24,10 +24,16 @@ export default class ProductListing {
 
   async init() {
     //get data
-    const list = await this.dataSource.getData(this.productCategory);
+    // const list = await this.dataSource.getData(this.productCategory);
+    const list = await this.dataSource.getData(this.category);
+    console.log('init: ProductListing after get list')
     console.log(list);
-    this.renderList(this.filterPoductList(list));  
-    this.discounted()
+    this.renderList(list);
+    document.querySelector('.title').innerHTML=this.category;
+
+    // this.renderList(this.filterPoductList(list));  
+    //TODO this is not working? passed into renderLIst
+    // this.discounted()
   }
 
   filterPoductList(list) {
@@ -39,6 +45,8 @@ export default class ProductListing {
     console.log('HtmlElement:', this.HtmlElement);
     renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
     renderListWithTemplate(discounted,this.HtmlElement,list);
+    console.log('w/in renderList(): discounted temp func');
+    console.log(discounted());
   }
  }
  function discounted(product){ 
@@ -46,7 +54,7 @@ export default class ProductListing {
   const retail = `${product.SuggestedRetailPrice}`;
   const price = `${product.FinalPrice}`;
 
-   if (price > retail){ // The price must be less than retail
+   if (price < retail){ // The price must be less than retail
    const sing = document.createElement('p');
    const discount = retail - price
    sing.textContent = `Discount ${discount}`

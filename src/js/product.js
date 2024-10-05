@@ -1,7 +1,7 @@
-import { getParams } from './utils.mjs';
+import { getParams, loadHeaderFooter } from './utils.mjs';
 import ProductDetails from './productDetails.mjs';
 import ProductData from './ProductData.mjs';
-import { loadHeaderFooter } from './utils.mjs';
+
 
 const dataSource = new ProductData('tents');
 
