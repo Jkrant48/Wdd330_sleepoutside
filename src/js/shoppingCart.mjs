@@ -73,7 +73,7 @@ function calcTotal(cart, cartTotalDOM) {
     tempTotal += item.FinalPrice; //* quantity when we get quantity variable added
   });
 
-  cartTotalDOM.innerHTML = `Total: $ ${tempTotal}`;
+  cartTotalDOM.innerHTML = `Total: $ ${tempTotal.toFixed(2)}`;
 }
 
 function displayTotal(cart, cartFooterDOM) {
