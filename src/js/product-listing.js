@@ -5,8 +5,10 @@ import { getParams, loadHeaderFooter } from './utils.mjs';
 loadHeaderFooter();
 
 const category = getParams('category');
+console.log(category);
 //first create an instance of our ProductData class.
-const dataSource = new ProductData();
+const dataSource = new ProductData(category);
+console.log(dataSource);
 //then get the element we want the product list to render in
 const productListDOM = document.querySelector('.product-list');
 //then create an instance of our ProductList class and send it the correct information.

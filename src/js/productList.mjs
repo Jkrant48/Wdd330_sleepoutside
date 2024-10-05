@@ -25,11 +25,11 @@ export default class ProductListing {
   async init() {
     //get data
     // const list = await this.dataSource.getData(this.productCategory);
-    const list = await this.dataSource.getData(this.category);
+    const list = await this.dataSource.getData(this.productCategory);
     console.log('init: ProductListing after get list')
     console.log(list);
     this.renderList(list);
-    document.querySelector('.title').innerHTML=this.category;
+    document.querySelector('.title').innerHTML=this.productCategory;
 
     // this.renderList(this.filterPoductList(list));  
     //TODO this is not working? passed into renderLIst
