@@ -25,33 +25,34 @@ export default class ProductListing {
     //get data
     // const list = await this.dataSource.getData(this.productCategory);
     const list = await this.dataSource.getData(this.productCategory);
-    console.log('init: ProductListing after get list')
-    console.log(list);
+    // console.log('init: ProductListing after get list')
+    // console.log(list);
     this.renderList(list);
     document.querySelector('.title').innerHTML=this.productCategory;
 
     // this.renderList(this.filterPoductList(list));  
-    //TODO this is not working? passed into renderLIst
+    //TODO this is not working? passed into renderLIst. seems to be creating two products?
     // this.discounted()
   }
 
+// don't need this anymore?
   filterPoductList(list) {
     const desiredIds = ['880RR', '985RF', '985PR', '344YJ'];
     return list.filter((product) => desiredIds.includes(product.Id));
   }
 
   renderList(list) {
-    console.log('HtmlElement:', this.HtmlElement);
+    // console.log('HtmlElement:', this.HtmlElement);
     renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
-    renderListWithTemplate(discounted,this.HtmlElement,list);
-    console.log('w/in renderList(): discounted temp func');
-    console.log(discounted());
+    // renderListWithTemplate(discounted,this.HtmlElement,list); --this line creates some funny extra discounts on first item
+    // console.log('w/in renderList(): discounted temp func');
+    // console.log(discounted());
   }
 
  }
  function discounted(product){ 
-  console.log('discounted(discount)');
-  console.log(discount);
+  // console.log('discounted(discount)');
+  // console.log(discount);
   const retail = `${product.SuggestedRetailPrice}`;
   const price = `${product.FinalPrice}`;
 
