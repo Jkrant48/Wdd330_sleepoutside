@@ -253,7 +253,7 @@ button {
 
 #search-form {
   display: flex; 
-  border: 2px solid #000000; 
+  border: 2px solid #333333; 
   border-radius: 5px; 
   overflow: hidden; 
 }
@@ -270,7 +270,7 @@ button {
 }
 
 button {
-  background-color: #000000; 
+  background-color: #333333; 
   color: white; 
   padding: 10px 20px; 
   border: none; 
@@ -279,7 +279,7 @@ button {
 }
 
 button:hover {
-  background-color: #000000;
+  background-color: #333333;
 }
 
 @media screen and (min-width: 500px) {
