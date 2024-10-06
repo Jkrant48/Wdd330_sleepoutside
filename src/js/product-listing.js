@@ -7,14 +7,34 @@ import { getParams, loadHeaderFooter } from './utils.mjs';
 loadHeaderFooter();
 
 const category = getParams('category');
-// console.log(category);
-//first create an instance of our ProductData class.
-// const dataSource = new ProductData(category);
-const dataSource = new ProductData();
-// console.log(dataSource);
-//then get the element we want the product list to render in
+const dataSource = new ProductData(category);
 const productListDOM = document.querySelector('.product-list');
-//then create an instance of our ProductList class and send it the correct information.
 const myList = new ProductListing(dataSource, category, productListDOM);
-//finally call the init method to show our products
 myList.init();
+
+class ProductListing {
+  constructor(dataSource, category, productListDOM) {
+    this.dataSource = dataSource;
+    this.category = category;
+    this.productListDOM = productListDOM;
+  }
+
+  async init() {
+    const products = await this.dataSource.getData();
+    this.render(products);
+  }
+
+  render(products) {
+    this.productListDOM.innerHTML = ''; // Clear existing products
+    products.forEach(product => {
+      const productItem = document.createElement('li');
+      productItem.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>Price: $${product.price}</p>
+        ${product.discount ? <p class="discount">Discount: $${product.discount}</p> : ''}
+        <button>Add to Cart</button>
+      `;
+      this.productListDOM.appendChild(productItem);
+    });
+  }
+}

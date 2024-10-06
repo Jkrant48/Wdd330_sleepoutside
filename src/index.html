@@ -8,7 +8,14 @@
     <script src="js/main.js" type="module"></script>
   </head>
   <body>
-    <header class="divider" id="main-header"></header>
+    <header class="divider" id="main-header">
+      <nav>
+        <form id="search-form" onsubmit="handleSearch(event)">
+          <input type="text" id="search-input" placeholder="Search for a product" required />
+          <button type="submit">Search</button>
+        </form>
+      </nav>
+    </header>
     <main class="divider">
       <div class="hero">
         <img
@@ -74,5 +81,13 @@
       </section>
     </main>
     <footer id="main-footer"></footer>
+    <script>
+      function handleSearch(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+        const query = document.getElementById('search-input').value; // Get the search query
+        // Redirect to the product listing page with the search query
+        window.location.href = `product-listing/index.html?search=${encodeURIComponent(query)}`;
+      }
+    </script>
   </body>
 </html>
