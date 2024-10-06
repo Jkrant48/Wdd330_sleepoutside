@@ -223,6 +223,10 @@ button {
   cursor: pointer;
 }
 
+#reduce-btn,
+#increase-btn {
+  cursor: pointer;
+}
 .cart-card__image {
   grid-row: 1/3;
   grid-column: 1;
