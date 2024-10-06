@@ -109,7 +109,17 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-
+/* Kerri added for superscript number */
+.cart-count {
+  position: absolute;
+  top: 9px;
+  right: 4px;
+  background: var(--primary-color);
+  padding: 0 2px;
+  border-radius: 45%;
+  color: var(--dark-grey);
+  font-size: var(--small-font);
+}
 /* End cart icon styles */
 
 /* product grid styles */

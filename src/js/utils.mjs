@@ -70,7 +70,23 @@ export async function loadHeaderFooter() {
   //render the header and footer
   renderWithTemplate(headerTemplate, headerDOM);
   renderWithTemplate(footerTemplate, footerDOM);
+  
+  updateCartCount();
 }
+
+//Kerri added function to update cart count
+export function updateCartCount() {
+  const cart = getLocalStorage('so-cart') || []; //retrieve the cart or initialize empty array
+  // console.log(`cart after getLocalStorage: ${cart}`);
+  const cartCount = cart.length;    //this will need to be updated if we create a variable that increase amount of each item
+  //update the court count in the header
+  const cartCountElement = qs('#cart-count');
+  if (cartCountElement) {
+    //display count or empty if zero
+    cartCountElement.textContent = cartCount;
+  }  
+}
+
 
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
