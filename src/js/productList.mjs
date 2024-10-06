@@ -31,7 +31,7 @@ export default class ProductListing {
     // render the list
     this.renderList(list);
     //set the title to the current category
-    document.querySelector('.title').innerHTML = this.category;
+    document.querySelector('.title').innerHTML = this.productCategory;
 
      //get data
     //const list = await this.dataSource.getData(this.productCategory);
@@ -50,7 +50,9 @@ export default class ProductListing {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
     renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
     renderListWithTemplate(discounted,this.HtmlElement,list);
+    document.querySelector('.title').innerHTML = this.category;
 
+    
 
   }}
     function discounted(product){ 
