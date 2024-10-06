@@ -13,7 +13,9 @@ function cartItemTemplate(item) {
       <h2 class='card__name'>${item.Name}</h2>
     </a>
     <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-    <p class='cart-card__quantity'>qty: 1</p>
+    <p class='cart-card__quantity'>
+    <span id='reduce-btn' data-id=${item.Id}>&minus;</span> qty: ${item.quantity} 
+    <span id='increase-btn' data-id=${item.Id}>&plus;</span></p> 
     <p class='cart-card__price'>$${item.FinalPrice}</p>
   </li>`;
 
@@ -35,6 +37,8 @@ export default class ShoppingCart {
     document.querySelector(this.productList).innerHTML = htmlItems.join('');
     removeFromCart(this.key);
     displayTotal(cartItems, this.cartFooterDOM);
+    increaseInCart(this.key);
+    decreaseInCart(this.key);
   }
 }
 
@@ -54,6 +58,59 @@ function removeItem(key, productId) {
   const updateCart = cartItems.filter((item) => item.Id !== productId);
   setLocalStorage(key, updateCart);
   window.location.reload();
+}
+
+//functions to increase or decrease quantity
+function increaseInCart(key) {
+  document.querySelectorAll('#increase-btn').forEach((button) => {
+    button.addEventListener(
+      'click',
+      (event) => {
+        const productId = event.target.dataset.id;
+        increaseItem(key, productId);
+        window.location.reload();
+      },
+      //const productId = event.target.closest('.cart-card divider').dataset.id;
+    );
+  });
+}
+
+function decreaseInCart(key) {
+  document.querySelectorAll('#reduce-btn').forEach((button) => {
+    button.addEventListener(
+      'click',
+      (event) => {
+        const productId = event.target.dataset.id;
+        decreaseItem(key, productId);
+        window.location.reload();
+      },
+      //const productId = event.target.closest('.cart-card divider').dataset.id;
+    );
+  });
+}
+//function to increase
+function increaseItem(key, productId) {
+  const cartItems = getLocalStorage(key);
+  const item = cartItems.find((item) => item.Id === productId);
+  if (item) {
+    item.quantity += 1;
+    const updateCart = cartItems.map((cartItem) =>
+      cartItem.Id === productId ? item : cartItem,
+    );
+    setLocalStorage(key, updateCart);
+  }
+}
+//function to decrease
+function decreaseItem(key, productId) {
+  const cartItems = getLocalStorage(key);
+  const item = cartItems.find((item) => item.Id === productId);
+  if (item && item.quantity > 1) {
+    item.quantity -= 1;
+    const updateCart = cartItems.map((cartItem) =>
+      cartItem.Id === productId ? item : cartItem,
+    );
+    setLocalStorage(key, updateCart);
+  }
 }
 
 //Kerri's feature

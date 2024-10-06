@@ -2,7 +2,7 @@ import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   console.log('productDetailsTemplate(product)');
-    console.log(product);
+  console.log(product);
   let originalPrice = product.FinalPrice; // Assuming FinalPrice is the discounted price
   let discountedPrice = originalPrice; // Initialize discounted price
   let discountDisplay = ''; // Initialize discount display message
@@ -10,13 +10,13 @@ function productDetailsTemplate(product) {
   // Check if the product has a discount
   if (product.Discount && product.Discount > 0) {
     // Calculate the original price before discount
-    discountedPrice = originalPrice - (originalPrice * product.Discount / 100);
+    discountedPrice = originalPrice - (originalPrice * product.Discount) / 100;
     discountDisplay = `<p class="product-card__discount">
       Discount: <span class="discount-amount">${product.Discount}% off!</span>
     </p>`;
   }
 
-    return `<section class="product-detail">
+  return `<section class="product-detail">
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.NameWithoutBrand}</h2>
         <img
@@ -61,7 +61,7 @@ export default class ProductDetails {
     //add event handlers
     document
       .getElementById('addToCart')
-      .addEventListener('click', this.addToCart()); //I removed the bind
+      .addEventListener('click', this.addToCart.bind(this)); //I removed the bind
   }
 
   addToCart() {
@@ -69,8 +69,17 @@ export default class ProductDetails {
     if (!Array.isArray(cart)) {
       cart = [];
     }
+    //check to see if product is already in cart
+    const existsInCart = cart.find((product) => product.Id === this.product.Id);
+    //if it exists in cart increase the quantity
+    if (existsInCart) {
+      existsInCart.quantity++;
+    } else {
+      this.product.quantity = 1;
+      cart.push(this.product);
+    }
     // console.log(cart);
-    cart.push(this.product);
+
     setLocalStorage('so-cart', cart);
   }
 
