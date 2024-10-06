@@ -8,13 +8,13 @@ function productDetailsTemplate(product) {
   // Check if the product has a discount
   if (product.Discount && product.Discount > 0) {
     // Calculate the original price before discount
-    discountedPrice = originalPrice - (originalPrice * product.Discount / 100);
+    discountedPrice = originalPrice - (originalPrice * product.Discount) / 100;
     discountDisplay = `<p class="product-card__discount">
       Discount: <span class="discount-amount">${product.Discount}% off!</span>
     </p>`;
   }
 
-    return `<section class="product-detail">
+  return `<section class="product-detail">
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.NameWithoutBrand}</h2>
         <img
