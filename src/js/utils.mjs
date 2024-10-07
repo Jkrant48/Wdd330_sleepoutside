@@ -76,11 +76,8 @@ export async function loadHeaderFooter() {
 
 //Kerri added function to update cart count
 export function updateCartCount() {
-  const cart = getLocalStorage('so-cart') || []; //retrieve the cart or initialize empty array
-  
+  const cart = getLocalStorage('so-cart') || []; //retrieve the cart or initialize empty array  
   const cartCount =cart.reduce((total, item) => total + item.quantity, 0);
-  // console.log(`cart after getLocalStorage: ${cart}`);
-  // const cartCount = cart.length;    //this will need to be updated if we create a variable that increase amount of each item
   //update the court count in the header
   const cartCountElement = qs('#cart-count');
   if (cartCountElement) {

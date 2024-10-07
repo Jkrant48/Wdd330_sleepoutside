@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { setLocalStorage, getLocalStorage, updateCartCount } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   console.log('productDetailsTemplate(product)');
@@ -81,6 +81,7 @@ export default class ProductDetails {
     // console.log(cart);
 
     setLocalStorage('so-cart', cart);
+    updateCartCount();
   }
 
   renderProductDetails(selector) {
