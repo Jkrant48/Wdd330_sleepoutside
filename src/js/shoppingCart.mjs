@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, updateCartCount } from './utils.mjs';
 
 function cartItemTemplate(item) {
   const newItem = `<li class='cart-card divider'>
@@ -22,8 +22,9 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+//key is the local storage key, productList is: document.querySelector('.product-list'), cartFooter is: document.querySelector('.cart-footer')
 export default class ShoppingCart {
-  constructor(key, productList, cartFooterDOM) {
+  constructor(key, productList, cartFooterDOM) {  
     this.key = key;
     this.productList = productList;
     this.cartFooterDOM = cartFooterDOM;
@@ -68,6 +69,7 @@ function increaseInCart(key) {
       (event) => {
         const productId = event.target.dataset.id;
         increaseItem(key, productId);
+        updateCartCount();
         window.location.reload();
       },
       //const productId = event.target.closest('.cart-card divider').dataset.id;
@@ -82,6 +84,7 @@ function decreaseInCart(key) {
       (event) => {
         const productId = event.target.dataset.id;
         decreaseItem(key, productId);
+        updateCartCount();
         window.location.reload();
       },
       //const productId = event.target.closest('.cart-card divider').dataset.id;
@@ -124,10 +127,10 @@ function isCartEmpty(cart) {
 
 function calcTotal(cart, cartTotalDOM) {
   let tempTotal = 0;
-  // let itemsTotal = 0;
+  let itemsTotal = 0;
   cart.map((item) => {
-    //itemsTotal += quantity; - or something like this,
-    tempTotal += item.FinalPrice; //* quantity when we get quantity variable added
+    // itemsTotal += item.quantity; // or something like this,
+    tempTotal += item.FinalPrice * item.quantity; //* quantity when we get quantity variable added
   });
 
   cartTotalDOM.innerHTML = `Total: $ ${tempTotal.toFixed(2)}`;
