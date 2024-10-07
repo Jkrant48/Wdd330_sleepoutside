@@ -70,7 +70,22 @@ export async function loadHeaderFooter() {
   //render the header and footer
   renderWithTemplate(headerTemplate, headerDOM);
   renderWithTemplate(footerTemplate, footerDOM);
+  
+  updateCartCount();
 }
+
+//Kerri added function to update cart count
+export function updateCartCount() {
+  const cart = getLocalStorage('so-cart') || []; //retrieve the cart or initialize empty array  
+  const cartCount =cart.reduce((total, item) => total + item.quantity, 0);
+  //update the court count in the header
+  const cartCountElement = qs('#cart-count');
+  if (cartCountElement) {
+    //display count or empty if zero
+    cartCountElement.textContent = cartCount > 0 ? cartCount : '0';
+  }  
+}
+
 
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
