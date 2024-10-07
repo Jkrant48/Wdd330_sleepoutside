@@ -259,6 +259,43 @@ button {
   display: none;
 }
 
+.search-container {
+  display: flex;
+  justify-content: center; 
+  margin: 20px 0; 
+}
+
+#search-form {
+  display: flex; 
+  border: 2px solid #333333; 
+  border-radius: 5px; 
+  overflow: hidden; 
+}
+
+#search-input {
+  border: none; 
+  padding: 10px; 
+  flex: 1; 
+  font-size: 16px; 
+}
+
+#search-input:focus {
+  outline: none; 
+}
+
+button {
+  background-color: #333333; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 16px; 
+}
+
+button:hover {
+  background-color: #333333;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
