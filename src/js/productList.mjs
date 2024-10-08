@@ -28,7 +28,7 @@ export default class ProductListing {
     // console.log('init: ProductListing after get list')
     // console.log(list);
     this.renderList(list);
-    document.querySelector('.title').innerHTML=this.productCategory;
+    document.querySelector('.title').innerHTML = this.productCategory;
 
     // this.renderList(this.filterPoductList(list));  
     //TODO this is not working? passed into renderLIst. seems to be creating two products?
@@ -48,9 +48,8 @@ export default class ProductListing {
     // console.log('w/in renderList(): discounted temp func');
     // console.log(discounted());
   }
-
- }
- function discounted(product){ 
+}
+  function discounted(product){ 
   // console.log('discounted(discount)');
   // console.log(discount);
   const retail = `${product.SuggestedRetailPrice}`;
@@ -62,6 +61,4 @@ export default class ProductListing {
    sing.textContent = `Discount ${discount}`
    document.querySelector('.discount').appendChild(sing)    
    
-   }
-} 
-
+   }}

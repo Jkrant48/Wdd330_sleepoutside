@@ -17,4 +17,4 @@ const productListDOM = document.querySelector('.product-list');
 //then create an instance of our ProductList class and send it the correct information.
 const myList = new ProductListing(dataSource, category, productListDOM);
 //finally call the init method to show our products
-myList.init();
+myList.init(); 
