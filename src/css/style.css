@@ -277,3 +277,60 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Checkout Page */
+.checkout {
+  padding: 2rem;
+}
+
+/* .checkout-page {
+  display: flex;
+  flex-direction: column;    
+  padding: 1rem;    
+  align-items: center;
+  justify-items: center;
+} */
+
+/* Checkout form */
+
+.required {
+  text-align: right;
+  font-size: .7rem;    
+}
+
+.checkout legend {
+  padding: 0 .5rem;
+  color: var(--clr-paragraph);
+}
+
+.checkout fieldset {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--clr-paragraph);
+}
+
+.checkout label {  
+  display: block;
+  padding-top: 1.2rem;
+  font-size: .8rem;    
+}
+
+.top input, textarea {
+  display: block;
+  padding: 1rem;
+  width: 100%;
+  max-width: 400px;
+  border: solid 1px #999;
+  border-radius: 5px;
+  color: #1e1d1d;
+}
+
+input:invalid {
+  background-color: rgb(250, 236, 249);
+  color: rgb(132, 0, 255);
+}
+
+.checkout .btn {
+  box-shadow: 0 0 5px #333;
+  width: 100%;
+}
