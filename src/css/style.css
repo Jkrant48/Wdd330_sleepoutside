@@ -284,6 +284,42 @@ ul.breadcrumb li a:hover {
   display: none;
 }
 
+/* Search Form Styles */
+#search-form {
+  display: flex;
+  align-items: center;
+  margin: 1em auto; /* Center the search form */
+}
+
+#search-input {
+  padding: 0.5em;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px; /* Slightly rounded corners */
+  font-size: var(--font-base);
+  flex: 1; /* Allow input to grow and fill the space */
+}
+
+#search-input::placeholder {
+  color: var(--dark-grey); /* Placeholder color */
+}
+
+button {
+  margin-left: 0.5em; /* Space between input and button */
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color); /* Use primary color for the button */
+  padding: 0.5em 1em; /* Adjust padding for the button */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Slightly rounded corners for the button */
+  font-size: var(--large-font); /* Font size for the button */
+  cursor: pointer; /* Pointer cursor for the button */
+}
+
+button[type="submit"]:hover {
+  background-color: var(--secondary-color); /* Change background on hover */
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
