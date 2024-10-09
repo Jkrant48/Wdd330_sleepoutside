@@ -254,6 +254,15 @@ button {
   grid-column: 3;
 }
 
+.discount-flag {
+  background-color: red; 
+  color: white;          
+  padding: 5px 10px;    
+  border-radius: 5px;   
+  font-weight: bold;     
+  font-size: 1.2em;      
+  margin-right: 5px;     
+}
 
 /* Breadcrumb */
 ul.breadcrumb {
@@ -319,6 +328,7 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: var(--secondary-color); /* Change background on hover */
 }
+
 
 @media screen and (min-width: 500px) {
   body {
