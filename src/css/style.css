@@ -254,21 +254,19 @@ button {
   grid-column: 3;
 }
 
-
 /* Breadcrumb */
 ul.breadcrumb {
   padding: 10px 16px;
   list-style: none;
-
 }
 ul.breadcrumb li {
   display: inline;
   font-size: 20px;
 }
-ul.breadcrumb li+li:before {
+ul.breadcrumb li + li:before {
   padding: 8px;
   color: rgb(117, 117, 121);
-  content: ">";
+  content: '>';
 }
 ul.breadcrumb li a {
   color: #02223d;
@@ -276,7 +274,6 @@ ul.breadcrumb li a {
 }
 ul.breadcrumb li a:hover {
   color: #01447e;
- 
 }
 
 /* kerri added week 2 feature */
@@ -307,7 +304,7 @@ button {
   margin-left: 0.5em; /* Space between input and button */
 }
 
-button[type="submit"] {
+button[type='submit'] {
   background-color: var(--primary-color); /* Use primary color for the button */
   padding: 0.5em 1em; /* Adjust padding for the button */
   border: none; /* Remove default border */
@@ -316,7 +313,7 @@ button[type="submit"] {
   cursor: pointer; /* Pointer cursor for the button */
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   background-color: var(--secondary-color); /* Change background on hover */
 }
 
@@ -332,17 +329,15 @@ button[type="submit"]:hover {
   text-align: center;
   border-radius: 20px;
   transform: rotate(10deg);
-  background-color: #dc7633 ;
+  background-color: #dc7633;
   color: white;
 }
 
-  .ribbon2 {
-    position: relative;
-    border: 0.5px solid #34495e ; 
-    width: 80%;
-    
-  }
-
+.ribbon2 {
+  position: relative;
+  border: 0.5px solid #34495e;
+  width: 80%;
+}
 
 @media screen and (min-width: 500px) {
   body {
@@ -380,11 +375,11 @@ footer {
 
 .required {
   text-align: right;
-  font-size: .7rem;    
+  font-size: 0.7rem;
 }
 
 .checkout legend {
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   color: var(--clr-paragraph);
 }
 
@@ -394,13 +389,14 @@ footer {
   color: var(--clr-paragraph);
 }
 
-.checkout label {  
+.checkout label {
   display: block;
   padding-top: 1.2rem;
-  font-size: .8rem;    
+  font-size: 0.8rem;
 }
 
-.top input, textarea {
+.top input,
+textarea {
   display: block;
   padding: 1rem;
   width: 100%;
@@ -414,4 +410,3 @@ input:invalid {
   background-color: rgb(250, 236, 249);
   color: rgb(132, 0, 255);
 }
-
