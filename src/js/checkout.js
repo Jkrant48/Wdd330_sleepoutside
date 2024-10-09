@@ -1,7 +1,7 @@
-import { loadHeaderFooter } from './utils.mjs';
+import { loadHeaderFooter} from './utils.mjs';
+
 
 //runs on checkout/index.html
 
 loadHeaderFooter();
-
 

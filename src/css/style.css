@@ -341,7 +341,7 @@ footer {
 
 /* Checkout Page */
 .checkout {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 /* .checkout-page {
@@ -391,7 +391,3 @@ input:invalid {
   color: rgb(132, 0, 255);
 }
 
-.checkout .btn {
-  box-shadow: 0 0 5px #333;
-  width: 100%;
-}
