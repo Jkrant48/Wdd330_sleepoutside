@@ -1,6 +1,16 @@
 import { renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
+  
+  let finalPrice = `${product.FinalPrice} `
+  let retail = `${product.SuggestedRetailPrice}`
+  let productInDiscount = '';
+
+  if(finalPrice < retail){
+     
+  productInDiscount = `<div class="discount">${productInDiscount}</div>`
+  
+  }
   return `<li class="product-card">
             <a href="../product_pages/index.html?product=${product.Id}">
               <img
@@ -9,9 +19,10 @@ function productCardTemplate(product) {
               />
               <h3 class="card__brand">${product.Brand.Name}</h3>
               <h2 class="card__name">${product.Name}</h2>
-              <p class="product-card__price">$${product.ListPrice}</p>
-              <div class="discount"</div></a>            
-          </li>`;
+              <p class="product-card__price">$${product.ListPrice}</p>  
+              <p class="ribbon2">${productInDiscount}<span class="ribbon">Discount</span></p>
+              </a>       
+          </li>`;         
 }
 
 export default class ProductListing {
@@ -44,21 +55,8 @@ export default class ProductListing {
   renderList(list) {
     // console.log('HtmlElement:', this.HtmlElement);
     renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
-    // renderListWithTemplate(discounted,this.HtmlElement,list); --this line creates some funny extra discounts on first item
+   //renderListWithTemplate(discounted,this.HtmlElement,list); //--this line creates some funny extra discounts on first item
     // console.log('w/in renderList(): discounted temp func');
     // console.log(discounted());
   }
 }
-  function discounted(product){ 
-  // console.log('discounted(discount)');
-  // console.log(discount);
-  const retail = `${product.SuggestedRetailPrice}`;
-  const price = `${product.FinalPrice}`;
-
-   if (price < retail){ // The price must be less than retail
-   const sing = document.createElement('p');
-   const discount = retail - price
-   sing.textContent = `Discount ${discount}`
-   document.querySelector('.discount').appendChild(sing)    
-   
-   }}

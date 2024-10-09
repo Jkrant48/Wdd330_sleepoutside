@@ -263,7 +263,7 @@ ul.breadcrumb {
 }
 ul.breadcrumb li {
   display: inline;
-  font-size: 18px;
+  font-size: 20px;
 }
 ul.breadcrumb li+li:before {
   padding: 8px;
@@ -271,7 +271,7 @@ ul.breadcrumb li+li:before {
   content: ">";
 }
 ul.breadcrumb li a {
-  color: #084275;
+  color: #02223d;
   text-decoration: none;
 }
 ul.breadcrumb li a:hover {
@@ -319,6 +319,30 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: var(--secondary-color); /* Change background on hover */
 }
+
+/*  Sign of discount */
+
+.ribbon {
+  width: 80px;
+  font-size: 14px;
+  padding: 4px;
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  text-align: center;
+  border-radius: 20px;
+  transform: rotate(10deg);
+  background-color: #dc7633 ;
+  color: white;
+}
+
+  .ribbon2 {
+    position: relative;
+    border: 0.5px solid #34495e ; 
+    width: 80%;
+    
+  }
+
 
 @media screen and (min-width: 500px) {
   body {
