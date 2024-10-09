@@ -10,6 +10,7 @@ function productCardTemplate(product) {
                     <div class="discount"></div>
                 </a>            
             </li>`;
+  
 }
 
 export default class ProductListing {
@@ -25,27 +26,24 @@ export default class ProductListing {
         this.renderList(this.productList);
         document.querySelector('.title').innerHTML = this.productCategory;
 
-        // Add sorting event listener
-        const sortOptions = document.getElementById('sortOptions');
-        sortOptions.addEventListener('change', () => {
-            this.sortProducts(sortOptions.value);
-        });
-    }
+    // this.renderList(this.filterPoductList(list));  
+    //TODO this is not working? passed into renderLIst. seems to be creating two products?
+    // this.discounted()
+  }
 
-    sortProducts(criteria) {
-        // Create a copy of the product list to sort
-        const sortedList = [...this.productList]; // Use spread operator to create a shallow copy
-        if (criteria === 'name') {
-            sortedList.sort((a, b) => a.Name.localeCompare(b.Name));
-        } else if (criteria === 'price') {
-            sortedList.sort((a, b) => a.ListPrice - b.ListPrice);
-        }
-        this.renderList(sortedList); // Render the sorted list
-    }
+// don't need this anymore?
+  filterPoductList(list) {
+    const desiredIds = ['880RR', '985RF', '985PR', '344YJ'];
+    return list.filter((product) => desiredIds.includes(product.Id));
+  }
 
-    renderList(list) {
-        renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
-    }
+  renderList(list) {
+    // console.log('HtmlElement:', this.HtmlElement);
+    renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
+   //renderListWithTemplate(discounted,this.HtmlElement,list); //--this line creates some funny extra discounts on first item
+    // console.log('w/in renderList(): discounted temp func');
+    // console.log(discounted());
+  }
 }
 
 function discounted(product) { 

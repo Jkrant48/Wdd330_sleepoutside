@@ -272,7 +272,7 @@ ul.breadcrumb {
 }
 ul.breadcrumb li {
   display: inline;
-  font-size: 18px;
+  font-size: 20px;
 }
 ul.breadcrumb li+li:before {
   padding: 8px;
@@ -280,7 +280,7 @@ ul.breadcrumb li+li:before {
   content: ">";
 }
 ul.breadcrumb li a {
-  color: #084275;
+  color: #02223d;
   text-decoration: none;
 }
 ul.breadcrumb li a:hover {
@@ -297,37 +297,60 @@ ul.breadcrumb li a:hover {
 #search-form {
   display: flex;
   align-items: center;
-  margin: 1em auto; /* Center the search form */
+  margin: 1em auto; 
 }
 
 #search-input {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
-  border-radius: 4px; /* Slightly rounded corners */
+  border-radius: 4px; 
   font-size: var(--font-base);
-  flex: 1; /* Allow input to grow and fill the space */
+  flex: 1; 
 }
 
 #search-input::placeholder {
-  color: var(--dark-grey); /* Placeholder color */
+  color: var(--dark-grey); 
 }
 
 button {
-  margin-left: 0.5em; /* Space between input and button */
+  margin-left: 0.5em; 
 }
 
 button[type="submit"] {
-  background-color: var(--primary-color); /* Use primary color for the button */
-  padding: 0.5em 1em; /* Adjust padding for the button */
-  border: none; /* Remove default border */
-  border-radius: 4px; /* Slightly rounded corners for the button */
-  font-size: var(--large-font); /* Font size for the button */
-  cursor: pointer; /* Pointer cursor for the button */
+  background-color: var(--primary-color); 
+  padding: 0.5em 1em; 
+  border: none; 
+  border-radius: 4px; 
+  font-size: var(--large-font); 
+  cursor: pointer; 
 }
 
 button[type="submit"]:hover {
-  background-color: var(--secondary-color); /* Change background on hover */
+  background-color: var(--secondary-color); 
 }
+
+/*  Sign of discount */
+
+.ribbon {
+  width: 80px;
+  font-size: 14px;
+  padding: 4px;
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  text-align: center;
+  border-radius: 20px;
+  transform: rotate(10deg);
+  background-color: #dc7633 ;
+  color: white;
+}
+
+  .ribbon2 {
+    position: relative;
+    border: 0.5px solid #34495e ; 
+    width: 80%;
+    
+  }
 
 
 @media screen and (min-width: 500px) {
