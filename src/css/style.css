@@ -329,30 +329,6 @@ button[type="submit"]:hover {
   background-color: var(--secondary-color); 
 }
 
-/*  Sign of discount */
-
-.ribbon {
-  width: 80px;
-  font-size: 14px;
-  padding: 4px;
-  position: absolute;
-  right: -20px;
-  top: -20px;
-  text-align: center;
-  border-radius: 20px;
-  transform: rotate(10deg);
-  background-color: #dc7633 ;
-  color: white;
-}
-
-  .ribbon2 {
-    position: relative;
-    border: 0.5px solid #34495e ; 
-    width: 80%;
-    
-  }
-
-
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
