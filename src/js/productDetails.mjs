@@ -12,7 +12,7 @@ function productDetailsTemplate(product) {
     // Calculate the original price before discount
     discountedPrice = originalPrice - (originalPrice * product.Discount) / 100;
     discountDisplay = `<p class="product-card__discount">
-      Discount: <span class="discount-amount">${product.Discount}% off!</span>
+      <span class="discount-flag">-${product.Discount}%</span> off!
     </p>`;
   }
 
