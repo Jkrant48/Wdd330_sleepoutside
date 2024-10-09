@@ -20,8 +20,18 @@ export default class ProductListing {
         this.productList = []; // Store the product list
     }
 
-    async init() {
+    async init(searchQuery) {
+        // Fetch the product list
         this.productList = await this.dataSource.getData(this.productCategory);
+
+        // Filter the product list based on the search query if provided
+        if (searchQuery) {
+            this.productList = this.productList.filter(product =>
+                product.Name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }
+
+        // Render the filtered product list
         this.renderList(this.productList);
         document.querySelector('.title').innerHTML = this.productCategory;
 
