@@ -1,62 +1,61 @@
 import { renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
-  
-  let finalPrice = `${product.FinalPrice} `
-  let retail = `${product.SuggestedRetailPrice}`
-  let productInDiscount = '';
-
-  if(finalPrice < retail){
-     
-  productInDiscount = `<div class="discount">${productInDiscount}</div>`
-  
-  }
-  return `<li class="product-card">
-            <a href="../product_pages/index.html?product=${product.Id}">
-              <img
-                src= "${product.Images.PrimaryMedium}"
-                alt="Image of ${product.Name}"
-              />
-              <h3 class="card__brand">${product.Brand.Name}</h3>
-              <h2 class="card__name">${product.Name}</h2>
-              <p class="product-card__price">$${product.ListPrice}</p>  
-              <p class="ribbon2">${productInDiscount}<span class="ribbon">Discount</span></p>
-              </a>       
-          </li>`;         
+    return `<li class="product-card">
+                <a href="../product_pages/index.html?product=${product.Id}">
+                    <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
+                    <h3 class="card__brand">${product.Brand.Name}</h3>
+                    <h2 class="card__name">${product.Name}</h2>
+                    <p class="product-card__price">$${product.ListPrice}</p>
+                    <div class="discount"></div>
+                </a>            
+            </li>`;
 }
 
 export default class ProductListing {
-  constructor(dataSource, productCategory, HtmlElement) {
-    this.dataSource = dataSource;
-    this.productCategory = productCategory;
-    this.HtmlElement = HtmlElement;
-  }
+    constructor(dataSource, productCategory, HtmlElement) {
+        this.dataSource = dataSource;
+        this.productCategory = productCategory;
+        this.HtmlElement = HtmlElement;
+        this.productList = []; // Store the product list
+    }
 
-  async init() {
-    //get data
-    // const list = await this.dataSource.getData(this.productCategory);
-    const list = await this.dataSource.getData(this.productCategory);
-    // console.log('init: ProductListing after get list')
-    // console.log(list);
-    this.renderList(list);
-    document.querySelector('.title').innerHTML = this.productCategory;
+    async init() {
+        this.productList = await this.dataSource.getData(this.productCategory);
+        this.renderList(this.productList);
+        document.querySelector('.title').innerHTML = this.productCategory;
 
-    // this.renderList(this.filterPoductList(list));  
-    //TODO this is not working? passed into renderLIst. seems to be creating two products?
-    // this.discounted()
-  }
+        // Add sorting event listener
+        const sortOptions = document.getElementById('sortOptions');
+        sortOptions.addEventListener('change', () => {
+            this.sortProducts(sortOptions.value);
+        });
+    }
 
-// don't need this anymore?
-  filterPoductList(list) {
-    const desiredIds = ['880RR', '985RF', '985PR', '344YJ'];
-    return list.filter((product) => desiredIds.includes(product.Id));
-  }
+    sortProducts(criteria) {
+        // Create a copy of the product list to sort
+        const sortedList = [...this.productList]; // Use spread operator to create a shallow copy
+        if (criteria === 'name') {
+            sortedList.sort((a, b) => a.Name.localeCompare(b.Name));
+        } else if (criteria === 'price') {
+            sortedList.sort((a, b) => a.ListPrice - b.ListPrice);
+        }
+        this.renderList(sortedList); // Render the sorted list
+    }
 
-  renderList(list) {
-    // console.log('HtmlElement:', this.HtmlElement);
-    renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
-   //renderListWithTemplate(discounted,this.HtmlElement,list); //--this line creates some funny extra discounts on first item
-    // console.log('w/in renderList(): discounted temp func');
-    // console.log(discounted());
+    renderList(list) {
+        renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
+    }
+}
+
+function discounted(product) { 
+  const retail = `${product.SuggestedRetailPrice}`;
+  const price = `${product.FinalPrice}`;
+
+  if (price < retail) { // The price must be less than retail
+    const sing = document.createElement('p');
+    const discount = retail - price;
+    sing.textContent = `Discount ${discount}`;
+    document.querySelector('.discount').appendChild(sing);
   }
 }
