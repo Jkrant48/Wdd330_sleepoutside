@@ -1,16 +1,34 @@
 import { getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
+
 function formDataToJSON(formElement) {
-  const formData = new FormData(formElement),
+  const formData = new FormData(formElement),  //FormData is part of available WebAPIs with javascritp.  We don't have to define it.
     convertedJSON = {};
 
   formData.forEach(function (value, key) {
     convertedJSON[key] = value;
   });
-
+//   console.log(convertedJSON);
   return convertedJSON;
 }
+
+  // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+  function packageItems(items) {
+    const simplifiedItems = items.map((item) => {
+    //   console.log(item);
+      return {
+        id: item.Id,
+        price: item.FinalPrice,
+        name: item.Name,
+        quantity: item.quantity,
+      };
+    });
+    // console.log(simplifiedItems);
+    return simplifiedItems;
+  }
+  
 
 
 export default class CheckoutProcess {
@@ -38,13 +56,11 @@ export default class CheckoutProcess {
         this.orderSubtotal = tempTotal;
   });        
         this.quantityTotal =this.list.reduce((total, item) => total + item.quantity, 0);
-
+        document.querySelector('#num-Items').innerHTML = `${this.quantityTotal}`;
         document.querySelector('#subtotal').innerHTML = ` ${this.orderSubtotal.toFixed(2)}`;
         // console.log(this.list);
         // console.log(this.quantityTotal);
         // console.log(this.orderSubtotal);
-
-
         this.calculateOrdertotal();
     }
   
@@ -65,34 +81,34 @@ export default class CheckoutProcess {
         // orderSummaryDOM.appendChild(this.checkoutProcessTemplate());
 
         //this.checkoutProcessTemplate();
-
+        
         document.querySelector('#tax').innerHTML = `${this.tax.toFixed(0)}`;
         document.querySelector('#shipping').innerHTML = `${this.shipping.toFixed(2)}`;
         document.querySelector('#total').innerHTML = `${this.orderTotal.toFixed(2)}`;
     }
 
-  }
-
-  // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
-  function packageItems(items) {
-    const simplifiedItems = items.map((item) => {
-      console.log(item);
-      return {
-        id: item.Id,
-        price: item.FinalPrice,
-        name: item.Name,
-        quantity: 1,
-      };
-    });
-    return simplifiedItems;
-  }
-  
-  export default class CheckoutProcess {
-    ...
-  
-    async checkout(form) {
+    async checkout() {
       // build the data object from the calculated fields, the items in the cart, and the information entered into the form
-  
-      // call the checkout method in our ExternalServices module and send it our data object.
+        const formElement = document.forms["checkout"];
+    
+        const json = formDataToJSON(formElement);
+        // add totals, and item details
+        json.orderDate = new Date();
+        json.orderTotal = this.orderTotal; 
+        json.tax = this.tax;
+        json.shipping = this.shipping;
+        json.items = packageItems(this.list);
+        console.log(json);
+        try {
+          const res = await services.checkout(json);
+          console.log(res);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+        // call the checkout method in our ExternalServices module and send it our data object.
     }
-  }
+
+
+
