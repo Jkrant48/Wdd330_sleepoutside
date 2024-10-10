@@ -1,13 +1,23 @@
 import { renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
+  let finalPrice = `${product.FinalPrice} `
+  let retail = `${product.SuggestedRetailPrice}`
+  let productInDiscount = '';
+
+  if(finalPrice < retail){
+     
+  productInDiscount = `<div class="discount">${productInDiscount}</div>`
+  
+  }
+
     return `<li class="product-card">
                 <a href="../product_pages/index.html?product=${product.Id}">
                     <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
                     <h3 class="card__brand">${product.Brand.Name}</h3>
                     <h2 class="card__name">${product.Name}</h2>
                     <p class="product-card__price">$${product.ListPrice}</p>
-                    <div class="discount"></div>
+                    <p class="ribbon2">${productInDiscount}<span class="ribbon">Discount</span></p>
                 </a>            
             </li>`;
 }
@@ -46,16 +56,4 @@ export default class ProductListing {
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
     }
-}
-
-function discounted(product) { 
-  const retail = `${product.SuggestedRetailPrice}`;
-  const price = `${product.FinalPrice}`;
-
-  if (price < retail) { // The price must be less than retail
-    const sing = document.createElement('p');
-    const discount = retail - price;
-    sing.textContent = `Discount ${discount}`;
-    document.querySelector('.discount').appendChild(sing);
-  }
 }

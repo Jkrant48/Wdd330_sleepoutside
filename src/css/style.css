@@ -324,7 +324,26 @@ button[type="submit"] {
   font-size: var(--large-font); 
   cursor: pointer; 
 }
+.ribbon {
+  width: 80px;
+  font-size: 14px;
+  padding: 4px;
+  position: absolute;
+  right: -25px;
+  top: -20px;
+  text-align: center;
+  border-radius: 20px;
+  transform: rotate(10deg);
+  background-color: #dc7633;
+  color: white;
 
+}
+
+.ribbon2 {
+  position: relative;
+  border:0.5px solid #34495e;
+  width: 80%;
+}
 button[type="submit"]:hover {
   background-color: var(--secondary-color); 
 }
