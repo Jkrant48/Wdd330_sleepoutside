@@ -145,4 +145,10 @@ function displayTotal(cart, cartFooterDOM) {
     cartFootDOM.classList.remove('hide');
   }
   calcTotal(cart, totalDOM);
+
+  //display cart checkout button if there is a total
+  document.getElementById('checkout-btn').addEventListener('click', () => {
+    window.location.href = '../checkout/index.html';  // Redirect to checkout page
+  });
+
 }
