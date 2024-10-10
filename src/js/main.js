@@ -8,7 +8,7 @@ loadHeaderFooter();
 function handleSearch(event) {
   event.preventDefault(); // Prevents the form from submitting the traditional way
   const searchInput = document.querySelector('#search-input').value.trim();
-  
+
   if (searchInput) {
     // Navigate to the product list page with the search query as a URL parameter
     window.location.href = `product-listing/index.html?search=${encodeURIComponent(searchInput)}`;

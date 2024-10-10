@@ -127,13 +127,12 @@ function isCartEmpty(cart) {
 
 function calcTotal(cart, cartTotalDOM) {
   let tempTotal = 0;
-  let itemsTotal = 0;
-  cart.map((item) => {
-    // itemsTotal += item.quantity; // or something like this,
-    tempTotal += item.FinalPrice * item.quantity; //* quantity when we get quantity variable added
+  
+  cart.map((item) => {   
+    tempTotal += item.FinalPrice * item.quantity; 
   });
 
-  cartTotalDOM.innerHTML = `Total: $ ${tempTotal.toFixed(2)}`;
+  cartTotalDOM.innerHTML = `Subtotal: $ ${tempTotal.toFixed(2)}`;
 }
 
 function displayTotal(cart, cartFooterDOM) {
@@ -145,4 +144,10 @@ function displayTotal(cart, cartFooterDOM) {
     cartFootDOM.classList.remove('hide');
   }
   calcTotal(cart, totalDOM);
+
+  //display cart checkout button if there is a total
+  document.getElementById('checkout-btn').addEventListener('click', () => {
+    window.location.href = '../checkout/index.html';  // Redirect to checkout page
+  });
+
 }
