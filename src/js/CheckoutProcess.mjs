@@ -1,5 +1,17 @@
 import { getLocalStorage } from "./utils.mjs";
 
+const services = new ExternalServices();
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
 
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
@@ -59,15 +71,28 @@ export default class CheckoutProcess {
         document.querySelector('#total').innerHTML = `${this.orderTotal.toFixed(2)}`;
     }
 
-//     checkoutProcessTemplate() {
-//         `<fieldset>
-//         <legend>Order Summary</legend>
-//         <p>Subtotal: $${this.orderSubtotal}</p>
-//         <p>Shipping Estimate: $${this.shipping}</p>
-//         <p>Tax: $${this.tax}</p>
-//         <p>Total: $${this.orderTotal}</p>
-//         </fieldset>
-//         <button type="submit" id="submit-order">Checkout</button>`
-// }
+  }
 
+  // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+  function packageItems(items) {
+    const simplifiedItems = items.map((item) => {
+      console.log(item);
+      return {
+        id: item.Id,
+        price: item.FinalPrice,
+        name: item.Name,
+        quantity: 1,
+      };
+    });
+    return simplifiedItems;
+  }
+  
+  export default class CheckoutProcess {
+    ...
+  
+    async checkout(form) {
+      // build the data object from the calculated fields, the items in the cart, and the information entered into the form
+  
+      // call the checkout method in our ExternalServices module and send it our data object.
+    }
   }
