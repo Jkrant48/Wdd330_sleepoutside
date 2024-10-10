@@ -20,13 +20,11 @@ function productCardTemplate(product) {
     }
   
     return `<li class="product-card">
+            <a href="../product_pages/index.html?product=${product.Id}">
+            <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
           <h3>${product.Brand.Name}</h3>
           <h2 class="divider">${product.NameWithoutBrand}</h2>
-          <img
-            class="divider"
-            src="${product.Images.PrimaryMedium}"  // Use PrimaryMedium image size
-            alt="${product.NameWithoutBrand}"
-          />
+         
           ${discountDisplay}
           <p class="product-card__price">Original Price: <s>$${originalPrice.toFixed(2)}</s></p>
           <p class="product-card__price">Discounted Price: $${discountedPrice.toFixed(2)}</p>
@@ -34,9 +32,6 @@ function productCardTemplate(product) {
           <p class="product__description">
             ${product.DescriptionHtmlSimple}
           </p>
-          <div class="product-detail__add">
-            <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-          </div>
       </li>`;
   }
   
