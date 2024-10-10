@@ -1,5 +1,5 @@
 const baseURL = import.meta.env.VITE_SERVER_URL
-// const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+// const baseURL = 'https://wdd330-backend.onrender.com/';
 
 
 function convertToJson(res) {
@@ -53,7 +53,7 @@ export default class ExternalServices {
       },
       body: JSON.stringify(cartOrder),
     };
-    return await fetch(baseURL + "checkout/", options).then(convertToJson);
+    return await fetch(baseURL + 'checkout/', options).then(convertToJson);
   }
 
 } 
