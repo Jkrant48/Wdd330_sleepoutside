@@ -8,6 +8,11 @@ function productDetailsTemplate(product) {
   let discountedPrice = product.FinalPrice;  // FinalPrice is already the discounted price
   let discountDisplay = '';  // Initialize discount display message
 
+  // let originalPrice = product.FinalPrice; // Assuming FinalPrice is the discounted price
+  // let discountedPrice = originalPrice; // Initialize discounted price
+  // let discountDisplay = ''; // Initialize discount display message
+
+
   // // Check if the product has a discount
  // if (product.Discount && product.Discount > 0) {
  //   // Calculate the original price before discount
