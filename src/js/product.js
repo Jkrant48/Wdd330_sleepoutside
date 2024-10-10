@@ -1,12 +1,12 @@
 import { getParams, loadHeaderFooter } from './utils.mjs';
 import ProductDetails from './productDetails.mjs';
 // import ProductData from './ProductData.mjs';
-import ProductData from './ProductData.mjs';
+import ExternalServices from './ExternalServices.mjs';
 
 //runs on product_pages/index.html
 
 // const dataSource2 = new ProductData('tents');
-const dataSource2 = new ProductData();
+const dataSource2 = new ExternalServices();
 // console.log('after call: new ProductData(): dataSource2');
 // console.log(dataSource2);
 
