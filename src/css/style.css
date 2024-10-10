@@ -255,13 +255,13 @@ button {
 }
 
 .discount-flag {
-  background-color: red; 
-  color: white;          
-  padding: 5px 10px;    
-  border-radius: 5px;   
-  font-weight: bold;     
-  font-size: 1.2em;      
-  margin-right: 5px;     
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-right: 5px;
 }
 
 /* Breadcrumb */
@@ -295,32 +295,32 @@ ul.breadcrumb li a:hover {
 #search-form {
   display: flex;
   align-items: center;
-  margin: 1em auto; 
+  margin: 1em auto;
 }
 
 #search-input {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
-  border-radius: 4px; 
+  border-radius: 4px;
   font-size: var(--font-base);
-  flex: 1; 
+  flex: 1;
 }
 
 #search-input::placeholder {
-  color: var(--dark-grey); 
+  color: var(--dark-grey);
 }
 
 button {
-  margin-left: 0.5em; 
+  margin-left: 0.5em;
 }
 
 button[type='submit'] {
-  background-color: var(--primary-color); 
-  padding: 0.5em 1em; 
-  border: none; 
-  border-radius: 4px; 
-  font-size: var(--large-font); 
-  cursor: pointer; 
+  background-color: var(--primary-color);
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  font-size: var(--large-font);
+  cursor: pointer;
 }
 
 button[type='submit']:hover {

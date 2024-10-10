@@ -1,17 +1,47 @@
 import { renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
-    return `<li class="product-card">
-                <a href="../product_pages/index.html?product=${product.Id}">
-                    <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
-                    <h3 class="card__brand">${product.Brand.Name}</h3>
-                    <h2 class="card__name">${product.Name}</h2>
-                    <p class="product-card__price">$${product.ListPrice}</p>
-                    <div class="discount"></div>
-                </a>            
-            </li>`;
-}
 
+
+    console.log('productDetailsTemplate(product)');
+    console.log(product);
+  
+    let originalPrice = product.SuggestedRetailPrice || product.ListPrice;  // Use SuggestedRetailPrice if available, fallback to ListPrice
+    let discountedPrice = product.FinalPrice;  // FinalPrice is already the discounted price
+    let discountDisplay = '';  // Initialize discount display message
+  
+    // Check if the product has a discount by comparing SuggestedRetailPrice and FinalPrice
+    if (product.SuggestedRetailPrice && product.SuggestedRetailPrice > product.FinalPrice) {
+      // Calculate the discount percentage
+      const discountPercent = ((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100;
+      discountDisplay = `<p class="product-card__discount">
+        <span class="discount-flag">-${discountPercent.toFixed(0)}%</span> off!
+      </p>`;
+    }
+  
+    return `<li class="product-card">
+          <h3>${product.Brand.Name}</h3>
+          <h2 class="divider">${product.NameWithoutBrand}</h2>
+          <img
+            class="divider"
+            src="${product.Images.PrimaryMedium}"  // Use PrimaryMedium image size
+            alt="${product.NameWithoutBrand}"
+          />
+          ${discountDisplay}
+          <p class="product-card__price">Original Price: <s>$${originalPrice.toFixed(2)}</s></p>
+          <p class="product-card__price">Discounted Price: $${discountedPrice.toFixed(2)}</p>
+          <p class="product__color">${product.Colors[0].ColorName}</p>
+          <p class="product__description">
+            ${product.DescriptionHtmlSimple}
+          </p>
+          <div class="product-detail__add">
+            <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+          </div>
+      </li>`;
+  }
+  
+
+ 
 export default class ProductListing {
     constructor(dataSource, productCategory, HtmlElement) {
         this.dataSource = dataSource;
@@ -23,6 +53,8 @@ export default class ProductListing {
     async init() {
         this.productList = await this.dataSource.getData(this.productCategory);
         this.renderList(this.productList);
+        console.log('renderList in init()');
+        console.log(this.renderList(this.productList));
         document.querySelector('.title').innerHTML = this.productCategory;
 
         // Add sorting event listener
