@@ -67,9 +67,9 @@ export default class CheckoutProcess {
     calculateOrdertotal() {
       // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
       this.tax = this.orderSubtotal * .06;
-      console.log(this.tax);  
+      // console.log(this.tax);  
       this.shipping = 10 + ((this.quantityTotal -1) * 2);
-        console.log(this.shipping);
+        // console.log(this.shipping);
       // display the totals.
       this.orderTotal = this.orderSubtotal + this.tax + this.shipping
       this.displayOrderTotals();
@@ -90,15 +90,16 @@ export default class CheckoutProcess {
     async checkout() {
       // build the data object from the calculated fields, the items in the cart, and the information entered into the form
         const formElement = document.forms["checkout"];
-    
+        // console.log(formElement);
         const json = formDataToJSON(formElement);
+        // console.log(json);
         // add totals, and item details
         json.orderDate = new Date();
         json.orderTotal = this.orderTotal; 
         json.tax = this.tax;
         json.shipping = this.shipping;
         json.items = packageItems(this.list);
-        console.log(json);
+        // console.log(json);
         try {
           const res = await services.checkout(json);
           console.log(res);

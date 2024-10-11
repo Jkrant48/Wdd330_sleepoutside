@@ -45,14 +45,20 @@ export default class ExternalServices {
     }
   }
   
-  async checkout(cartOrder) {
+  async checkout(payload) {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(cartOrder),
+      body: JSON.stringify(payload),
     };
+    // console.log('payload and baseURL');
+    // console.log(payload);
+    // console.log(baseURL);
+    console.log('Posting to:', baseURL + 'checkout/');
+    console.log('Payload:', JSON.stringify(payload));
+
     return await fetch(baseURL + 'checkout/', options).then(convertToJson);
   }
 
