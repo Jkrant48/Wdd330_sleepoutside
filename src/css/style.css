@@ -334,18 +334,16 @@ button[type='submit'] {
   transform: rotate(10deg);
   background-color: #dc7633;
   color: white;
-
 }
 
 .ribbon2 {
   position: relative;
-  border:0.5px solid #34495e;
+  border: 0.5px solid #34495e;
   width: 80%;
 }
-button[type="submit"]:hover {
-  background-color: var(--secondary-color); 
+button[type='submit']:hover {
+  background-color: var(--secondary-color);
 }
-
 
 /* Checkout Page */
 .checkout {
@@ -391,7 +389,6 @@ input:invalid {
   background-color: rgb(250, 236, 249);
   color: rgb(132, 0, 255);
 }
-
 
 @media screen and (min-width: 500px) {
   body {
