@@ -24,7 +24,7 @@ function cartItemTemplate(item) {
 
 //key is the local storage key, productList is: document.querySelector('.product-list'), cartFooter is: document.querySelector('.cart-footer')
 export default class ShoppingCart {
-  constructor(key, productList, cartFooterDOM) {  
+  constructor(key, productList, cartFooterDOM) {
     this.key = key;
     this.productList = productList;
     this.cartFooterDOM = cartFooterDOM;
@@ -139,10 +139,18 @@ function calcTotal(cart, cartTotalDOM) {
 function displayTotal(cart, cartFooterDOM) {
   const cartFootDOM = document.querySelector(cartFooterDOM);
   const totalDOM = document.querySelector('.cart-total');
+
+  //check out button
+  const checkOutBtn = document.createElement('a');
+  checkOutBtn.textContent = 'Check-Out';
+  checkOutBtn.href = '../checkout/index.html';
+  checkOutBtn.id = 'checkout-btn';
+
   if (isCartEmpty(cart)) {
     cartFootDOM.classList.add('hide');
   } else {
     cartFootDOM.classList.remove('hide');
+    cartFootDOM.appendChild(checkOutBtn);
   }
   calcTotal(cart, totalDOM);
 }
