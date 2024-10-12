@@ -9,7 +9,6 @@
     <script src="../js/checkout.js" type="module"></script>
   </head>
   <body>
-    <header class="divider" id="main-header"></header>
     <main class="divider checkout-page">
       <h2>Review & Place your Order</h2>
       <section class="checkout-form">
@@ -25,6 +24,7 @@
                 id="fname"
                 required
                 placeholder="First Name"
+                value=""
             /></label>
             <label class="top" for="lname"
               >Last Name*
@@ -33,41 +33,65 @@
                 name="lname"
                 id="lname"
                 required
-                placeholder="Last Name"
+                placeholder="Last Namef"
+                value=""
             /></label>
 
-            <label class="top" for="address"
+            <label class="top" for="street"
               >Street Address*
-              <input type="text" name="address" id="address" required
+              <input
+                type="text"
+                name="street"
+                id="street"
+                value=""
+                required
             /></label>
 
             <label class="top" for="city"
-              >City* <input type="text" name="city" id="city" required
+              >City*
+              <input
+                type="text"
+                name="city"
+                id="city"
+                value=""
+                required
             /></label>
 
             <label class="top" for="state"
-              >State* <input type="text" name="state" id="state" required
+              >State*
+              <input type="text" name="state" id="state" value="" required
             /></label>
 
             <label class="top" for="zip"
-              >Zip Code* <input type="text" name="zip" id="zip" required
+              >Zip Code*
+              <input type="text" name="zip" id="zip" value="" required
             /></label>
           </fieldset>
           <fieldset>
             <legend>Payment Information</legend>
-            <label class="top" for="cc-number"
+            <label class="top" for="cardNumber"
               >Credit Card Number*
-              <input type="text" name="cc-number" id="cc-number" required
+              <input
+                type="text"
+                name="cardNumber"
+                id="cardNumber"
+                value=""
+                required
             /></label>
 
-            <label class="top" for="cc-exp"
+            <label class="top" for="expiration"
               >Expiration Date (MM/YY)*
-              <input type="text" name="cc-exp" id="cc-exp" required
+              <input
+                type="text"
+                name="expiration"
+                id="expiration"
+                value=""
+                required
             /></label>
 
-            <label class="top" for="cc-cvv"
+            <label class="top" for="code"
               >Security Code*
-              <input type="text" name="cc-cvv" id="cc-cvv" required
+              <input type="text" name="code" id="code" value="" required
             /></label>
             <!-- <input type="hidden" name="date-stamp" id="date-stamp" value="" /> -->
           </fieldset>

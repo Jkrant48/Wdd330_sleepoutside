@@ -1,5 +1,5 @@
-import { getLocalStorage } from "./utils.mjs";
-import ExternalServices from "./ExternalServices.mjs";
+import { getLocalStorage , setLocalStorage, alertMessage, removeAllAlerts} from './utils.mjs';
+import ExternalServices from './ExternalServices.mjs';
 
 const services = new ExternalServices();
 
@@ -17,7 +17,7 @@ function formDataToJSON(formElement) {
   // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
   function packageItems(items) {
     const simplifiedItems = items.map((item) => {
-    //   console.log(item);
+      console.log(item);
       return {
         id: item.Id,
         price: item.FinalPrice,
@@ -55,7 +55,7 @@ export default class CheckoutProcess {
         // console.log(tempTotal);
         this.orderSubtotal = tempTotal;
   });        
-        this.quantityTotal =this.list.reduce((total, item) => total + item.quantity, 0);
+        this.quantityTotal = this.list.reduce((total, item) => total + item.quantity, 0);
         document.querySelector('#num-Items').innerHTML = `${this.quantityTotal}`;
         document.querySelector('#subtotal').innerHTML = ` ${this.orderSubtotal.toFixed(2)}`;
         // console.log(this.list);
@@ -68,7 +68,7 @@ export default class CheckoutProcess {
       // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
       this.tax = this.orderSubtotal * .06;
       console.log(this.tax);  
-      this.shipping = 10 + ((this.quantityTotal -1) * 2);
+      this.shipping = 10 + ((this.quantityTotal - 1) * 2);
         console.log(this.shipping);
       // display the totals.
       this.orderTotal = this.orderSubtotal + this.tax + this.shipping
@@ -89,7 +89,7 @@ export default class CheckoutProcess {
 
     async checkout() {
       // build the data object from the calculated fields, the items in the cart, and the information entered into the form
-        const formElement = document.forms["checkout"];
+        const formElement = document.forms['checkout'];
     
         const json = formDataToJSON(formElement);
         // add totals, and item details
@@ -102,13 +102,17 @@ export default class CheckoutProcess {
         try {
           const res = await services.checkout(json);
           console.log(res);
+          setLocalStorage('so-cart', []);
+          location.assign('/checkout/success.html');
         } catch (err) {
+          removeAllAlerts();
+          for (let message in err.message) {
+            alertMessage(err.message[message]);
+          }
+    
           console.log(err);
         }
       }
-
-        // call the checkout method in our ExternalServices module and send it our data object.
     }
-
 
 

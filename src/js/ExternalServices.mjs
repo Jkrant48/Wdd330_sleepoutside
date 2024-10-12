@@ -1,12 +1,14 @@
-const baseURL = import.meta.env.VITE_SERVER_URL
+//const baseURL = import.meta.env.VITE_SERVER_URL;
 // const baseURL = 'https://wdd330-backend.onrender.com/';
-
+const baseURL = 'http://server-nodejs.cit.byui.edu:3000/';
 
 function convertToJson(res) {
+  const jsonResponse  = res.json()
   if (res.ok) {
-    return res.json();
+    return jsonResponse 
   } else {
-    throw new Error('Bad Response');
+    //throw new Error('Bad Response');
+    throw { name: 'servicesError', message: jsonResponse };
   }
 }
 
@@ -45,15 +47,15 @@ export default class ExternalServices {
     }
   }
   
-  async checkout(cartOrder) {
+  async checkout(payload) {
     const options = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(cartOrder),
+      body: JSON.stringify(payload),
     };
     return await fetch(baseURL + 'checkout/', options).then(convertToJson);
   }
 
-} 
+}
