@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -99,14 +99,18 @@ export default class CheckoutProcess {
         json.items = packageItems(this.list);
         
         try {
-          const res = await services.checkout(json);
+          const res = await services.checkout(json);          
           console.log(res);
+          console.log(res.orderId);
+          // alert(res.message + '  Order ID: ' + res.orderId);  
+          setLocalStorage("so-cart", []);
+          location.assign("/checkout/success.html");        
         } catch (err) {
-          console.log(err);
+          console.log('Result error log:  ' + err);
+          alert('Network service error.') + err;
         }
-      }
-
-        // call the checkout method in our ExternalServices module and send it our data object.
+      }      
+       
     }
 
 
