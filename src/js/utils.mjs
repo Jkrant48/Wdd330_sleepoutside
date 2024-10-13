@@ -95,3 +95,33 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener('click', callback);
 }
+
+//create alert for errors
+export function alertMessage(message, scroll=true) {
+  // create element to hold our alert
+  const alertDOM = document.createElement('div');
+  // add a class to style the alert
+  alertDOM.classList.add('alert');
+  // set the contents. You should have a message and an X or something the user can click on to remove
+  alertDOM.innerHTML = `<p>${message}</p><span>X</span>`;
+  // add a listener to the alert to see if they clicked on the X
+  // if they did then remove the child
+  alertDOM.addEventListener('click', function(e) {
+      if(e.target.tagName == "SPAN") { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
+        mainDOM.removeChild(this);
+      }
+  });
+  // add the alert to the top of main
+  const mainDOM = document.querySelector('main');
+  mainDOM.prepend(alertDOM);
+  // make sure they see the alert by scrolling to the top of the window
+  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+  if(scroll)
+    window.scrollTo(0,0);
+
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}
