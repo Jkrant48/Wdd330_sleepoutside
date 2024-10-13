@@ -1,27 +1,13 @@
-import { setLocalStorage, getLocalStorage, updateCartCount } from './utils.mjs';
+import { setLocalStorage, getLocalStorage, updateCartCount, alertMessage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   console.log('productDetailsTemplate(product)');
   console.log(product);
 
- let originalPrice = product.SuggestedRetailPrice || product.ListPrice;  // Use SuggestedRetailPrice if available, fallback to ListPrice
+  let originalPrice = product.SuggestedRetailPrice || product.ListPrice;  // Use SuggestedRetailPrice if available, fallback to ListPrice
   let discountedPrice = product.FinalPrice;  // FinalPrice is already the discounted price
   let discountDisplay = '';  // Initialize discount display message
-
-  // let originalPrice = product.FinalPrice; // Assuming FinalPrice is the discounted price
-  // let discountedPrice = originalPrice; // Initialize discounted price
-  // let discountDisplay = ''; // Initialize discount display message
-
-
-  // // Check if the product has a discount
- // if (product.Discount && product.Discount > 0) {
- //   // Calculate the original price before discount
- //   discountedPrice = originalPrice - (originalPrice * product.Discount) / 100;
- //   discountDisplay = `<p class="product-card__discount">
- //     <span class="discount-flag">-${product.Discount}%</span> off!
- //   </p>`;
- // }
-
+  
   // Check if the product has a discount by comparing SuggestedRetailPrice and FinalPrice
   if (product.SuggestedRetailPrice && product.SuggestedRetailPrice > product.FinalPrice) {
     // Calculate the discount percentage
@@ -97,6 +83,7 @@ export default class ProductDetails {
 
     setLocalStorage('so-cart', cart);
     updateCartCount();
+    alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
   }
 
   renderProductDetails(selector) {
