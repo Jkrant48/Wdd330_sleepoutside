@@ -389,6 +389,12 @@ input:invalid {
   background-color: rgb(250, 236, 249);
   color: rgb(132, 0, 255);
 }
+/* Quick lookup */
+
+.lookup{
+  align-items: center;
+   
+}
 
 /* alert styles */
 .alert {
