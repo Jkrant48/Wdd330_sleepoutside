@@ -10,10 +10,9 @@ function productCardTemplate(product) {
   productInDiscount = `<div class="discount">${productInDiscount}</div>`
   
   }
-
-    return `<li class="product-card">
+    return `<li class="product-card"><button class="lookup">View details</button>
                 <a href="../product_pages/index.html?product=${product.Id}">
-                    <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}" />
+                    <img class ='.product__img' src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}"/>
                     <h3 class="card__brand">${product.Brand.Name}</h3>
                     <h2 class="card__name">${product.Name}</h2>
                     <p class="product-card__price">$${product.ListPrice}</p>
@@ -55,5 +54,20 @@ export default class ProductListing {
 
     renderList(list) {
         renderListWithTemplate(productCardTemplate, this.HtmlElement, list);
+        this.view()
     }
+    view()
+    { 
+     const view = document.querySelector('.lookup'); 
+    // const viewppp = document.querySelector()
+    // view.forEach(addEventListener('click', () => 
+        {
+        view.addEventListener('click', () =>    
+        alert('Im working on it!!')
+       )}
+       
+    // ))
+    }
+    
+
 }

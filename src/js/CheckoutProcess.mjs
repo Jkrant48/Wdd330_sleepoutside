@@ -55,7 +55,7 @@ export default class CheckoutProcess {
         
         this.orderSubtotal = tempTotal;
   });        
-        this.quantityTotal =this.list.reduce((total, item) => total + item.quantity, 0);
+        this.quantityTotal = this.list.reduce((total, item) => total + item.quantity, 0);
         document.querySelector('#num-Items').innerHTML = `${this.quantityTotal}`;
         document.querySelector('#subtotal').innerHTML = ` ${this.orderSubtotal.toFixed(2)}`;
        
