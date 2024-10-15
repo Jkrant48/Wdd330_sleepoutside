@@ -1,6 +1,6 @@
 import { loadHeaderFooter } from './utils.mjs';
 import CheckoutProcess from './CheckoutProcess.mjs';
-// import CheckoutProcess from './checkoutprocess.mjs';
+// import CheckoutProcess from './checkoutprocess.mjs';  //this one VSCode likes, but it is wrong and creates errors
 
 //runs on checkout/index.html
 

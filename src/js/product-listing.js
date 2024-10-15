@@ -1,6 +1,7 @@
 import ExternalServices from './ExternalServices.mjs';
 import ProductListing from './productList.mjs';
 import { getParams, loadHeaderFooter } from './utils.mjs';
+import Alert from './alert.js';
 
 //runs on product-listing.html
 
@@ -18,3 +19,6 @@ const productListDOM = document.querySelector('.product-list');
 const myList = new ProductListing(dataSource, category, productListDOM);
 //finally call the init method to show our products
 myList.init();
+
+const myAlert = new Alert();
+myAlert.loadAlerts();
