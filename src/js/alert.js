@@ -1,24 +1,8 @@
 export default class Alert {
   constructor() {
-    this.alertsURL = '../json/alerts.json';
+    this.alertsURL = '/json/alert.json';    
   }
 
-//   async loadAlerts() {
-//     try {
-//       const response = await fetch(this.alertsURL);
-//       console.log('response: ' + response);
-//       console.log(response);
-//       if (response.ok){
-//         const alerts = await response.json();
-//         console.log(alerts);
-//         this.displayAlerts(alerts);
-//     } else
-//        throw {name:'InvalidDataError', message: 'Expected a list of alerts'}
-
-//     } catch (error) {
-//       console.error('Error fetching alerts:' + error);
-//     }
-//   }
 
 async loadAlerts() {
     try {
@@ -27,7 +11,7 @@ async loadAlerts() {
       // Check if the response is OK (status code between 200-299)
       if (response.ok) {
         const alerts = await response.json(); // Parse the response body as JSON
-        console.log('Loaded alerts:', alerts); // Log the alerts to verify
+        // console.log('Loaded alerts:', alerts); // Log the alerts to verify
         this.displayAlerts(alerts); // Display alerts if everything is fine
       } else {
         throw new Error(`Failed to fetch alerts: ${response.statusText}`);
