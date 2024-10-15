@@ -1,13 +1,12 @@
 export default class Alert {
   constructor() {
-    this.alertsURL = '/json/alert.json';    
+    this.alertsURL = '/json/alert.json';
   }
 
-
-async loadAlerts() {
+  async loadAlerts() {
     try {
       const response = await fetch(this.alertsURL);
-      
+
       // Check if the response is OK (status code between 200-299)
       if (response.ok) {
         const alerts = await response.json(); // Parse the response body as JSON
@@ -20,7 +19,6 @@ async loadAlerts() {
       console.error('Error fetching alerts:', error);
     }
   }
-  
 
   displayAlerts(alerts) {
     if (alerts.length > 0) {
