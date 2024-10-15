@@ -1,6 +1,7 @@
 // import ProductData from './ProductData.mjs';
 // import ProductListing from './productList.mjs';
 import { loadHeaderFooter } from './utils.mjs';
+import Alert from './alert.js';
 
 loadHeaderFooter();
 
@@ -20,3 +21,7 @@ const searchForm = document.querySelector('#search-form');
 if (searchForm) {
   searchForm.addEventListener('submit', handleSearch);
 }
+
+//add Alert
+const myAlert = new Alert();
+myAlert.loadAlerts();
