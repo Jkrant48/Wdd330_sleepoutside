@@ -1,5 +1,6 @@
 // import ProductData from './ProductData.mjs';
 // import ProductListing from './productList.mjs';
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 import { loadHeaderFooter } from './utils.mjs';
 import Alert from './alert.js';
 
@@ -25,3 +26,19 @@ if (searchForm) {
 //add Alert
 const myAlert = new Alert();
 myAlert.loadAlerts();
+
+//display banner(made it simple to display and set a key if visted)
+document.addEventListener('DOMContentLoaded', () => {
+  const banner = document.getElementById('registration-banner');
+  const register = document.getElementById('register-btn');
+  const close_bnr = document.getElementById('close-banner');
+
+  if (!getLocalStorage('hasVisited')) {
+    banner.style.display = 'block';
+  }
+
+  close_bnr.addEventListener('click', () => {
+    banner.style.display = 'none';
+    localStorage.setItem('hasVisited', 'true');
+  });
+});
